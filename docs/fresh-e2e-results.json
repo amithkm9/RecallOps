@@ -1,0 +1,366 @@
+{
+  "started_at": "2026-10-22T11:52:15.048364+00:00",
+  "project": "recallops-fresh-0421e9be",
+  "transport": "Real HTTP API; frontend unit tests and production build; no browser",
+  "isolation": "New Compose project, network, PostgreSQL container and volume",
+  "checks": [
+    {
+      "name": "New database has no stores, recalls, credentials, inventory or incidents"
+    },
+    {
+      "name": "Fresh production frontend bundle is served"
+    },
+    {
+      "name": "Invalid-token error recovers when token is cleared"
+    },
+    {
+      "name": "Administrator created through public local setup authenticates"
+    },
+    {
+      "name": "Store and all named roles created from scratch"
+    },
+    {
+      "name": "Viewer writes and integration administration are blocked"
+    },
+    {
+      "name": "Scoped store listing hides other stores"
+    },
+    {
+      "name": "Archived official source imported into empty database"
+    },
+    {
+      "name": "Repeat source import does not duplicate recalls"
+    },
+    {
+      "name": "Source history and rejected-record inspection are available"
+    },
+    {
+      "name": "Inventory imports valid rows and identifies invalid line"
+    },
+    {
+      "name": "Repeated inventory import preserves two stock identities"
+    },
+    {
+      "name": "Imported stock automatically creates a matching incident"
+    },
+    {
+      "name": "Missing batch requires review without creating a hold"
+    },
+    {
+      "name": "Inventory search and dashboard reflect imported quantities"
+    },
+    {
+      "name": "Delivery import retains two unconfirmed candidates"
+    },
+    {
+      "name": "Identical document bytes deduplicate across filenames"
+    },
+    {
+      "name": "Original delivery download is byte-for-byte identical"
+    },
+    {
+      "name": "Claim acceptance requires authorized human credentials"
+    },
+    {
+      "name": "Confirmed delivery creates exactly one 24-unit hold"
+    },
+    {
+      "name": "Accepted evidence does not overwrite warehouse batch"
+    },
+    {
+      "name": "Accepted association creates a scoped retrieval hint"
+    },
+    {
+      "name": "Evidence records carry source row, validation and actor"
+    },
+    {
+      "name": "Frozen evidence comparison changes review to affected"
+    },
+    {
+      "name": "Simulation creates no operational decisions or holds"
+    },
+    {
+      "name": "Human resolution retains protective hold"
+    },
+    {
+      "name": "Supplier submissions are idempotent"
+    },
+    {
+      "name": "Contradiction reopens review and preserves the same hold"
+    },
+    {
+      "name": "Stale investigation cannot be marked resolved"
+    },
+    {
+      "name": "Supplier correction preserves both original and superseding evidence"
+    },
+    {
+      "name": "Review assignment records the named operator"
+    },
+    {
+      "name": "Affected held case cannot be closed"
+    },
+    {
+      "name": "Real PDF upload extracts one labelled claim with page provenance"
+    },
+    {
+      "name": "Preserved PDF download matches uploaded bytes"
+    },
+    {
+      "name": "Ordered inventory events reject stale, conflicting and cross-store updates"
+    },
+    {
+      "name": "Higher sequence updates stock successfully"
+    },
+    {
+      "name": "New unresolved companion asks a question without a hold"
+    },
+    {
+      "name": "Store-scoped operator cannot inspect another store incident"
+    },
+    {
+      "name": "Sourced physical observation resolves the unknown batch"
+    },
+    {
+      "name": "Settled unaffected case closes"
+    },
+    {
+      "name": "Closed review can be explicitly reopened"
+    },
+    {
+      "name": "Replay advance is idempotent"
+    },
+    {
+      "name": "Classic three-stage replay completes with held conflict"
+    },
+    {
+      "name": "New replay archives rather than deletes old evidence"
+    },
+    {
+      "name": "Both built-in evaluations execute on the fresh deployment"
+    },
+    {
+      "name": "External labelled evaluations retain expected case counts"
+    },
+    {
+      "name": "Invalid evaluation dataset rejected"
+    },
+    {
+      "name": "Absent model configuration is reported without a provider call"
+    },
+    {
+      "name": "Live event stream delivers persisted progress"
+    },
+    {
+      "name": "Worker heartbeat is healthy with no failed events"
+    },
+    {
+      "name": "App restart preserves decisions, holds and source documents"
+    },
+    {
+      "name": "Production mode blocks unauthenticated reads and credential creation"
+    },
+    {
+      "name": "Named administrator survives production restart"
+    },
+    {
+      "name": "Revoked credential cannot authenticate"
+    },
+    {
+      "name": "Authorized hold release is attributed and does not erase decisions"
+    },
+    {
+      "name": "Cross-origin mutation rejected"
+    },
+    {
+      "name": "Backup restores equal decision/evidence/hold counts with zero orphan links",
+      "counts": "113|575|29|0"
+    },
+    {
+      "name": "Backend regression suite passes including fault-injection recovery",
+      "passed": 120
+    },
+    {
+      "name": "Frontend component/unit suite passes",
+      "passed": 12
+    }
+  ],
+  "limitations": [
+    "Archived official recall data and fictional business records only.",
+    "External model requests and live official API synchronization disabled.",
+    "Browser rendering/clicks and Aiven deployment are not exercised.",
+    "Crash injection is exercised by backend regression tests on a separate test database."
+  ],
+  "test_url": "http://127.0.0.1:64991",
+  "primary_incident_id": "e7ab248e-aaeb-4be2-b84c-28cf70757164",
+  "benchmark": {
+    "sample_size": 22,
+    "results": [
+      {
+        "method": "Product name",
+        "precision": 0.3333333333333333,
+        "recall": 0.6,
+        "f1": 0.42857142857142855,
+        "false_hold_rate": 1.0,
+        "review_accuracy": 0.0,
+        "latency_ms": 0.016867454591688744,
+        "revision_rate": null,
+        "missed_hold_rate": 0.4,
+        "review_request_rate": 0.0,
+        "p50_latency_ms": 0.01664549927227199,
+        "p95_latency_ms": 0.021816699245391646,
+        "counts": {
+          "true_positives": 6,
+          "false_positives": 12,
+          "false_negatives": 4,
+          "sample_size": 22
+        }
+      },
+      {
+        "method": "GTIN only",
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "false_hold_rate": 0.8333333333333334,
+        "review_accuracy": 0.0,
+        "latency_ms": 0.022079500095887026,
+        "revision_rate": null,
+        "missed_hold_rate": 0.0,
+        "review_request_rate": 0.0,
+        "p50_latency_ms": 0.020436999875528272,
+        "p95_latency_ms": 0.02828925098583568,
+        "counts": {
+          "true_positives": 10,
+          "false_positives": 10,
+          "false_negatives": 0,
+          "sample_size": 22
+        }
+      },
+      {
+        "method": "RecallOps",
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_hold_rate": 0.0,
+        "review_accuracy": 1.0,
+        "latency_ms": 21.330272727272728,
+        "revision_rate": 1.0,
+        "missed_hold_rate": 0.0,
+        "review_request_rate": 0.36363636363636365,
+        "p50_latency_ms": 19.3535,
+        "p95_latency_ms": 29.590099999999996,
+        "counts": {
+          "true_positives": 10,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "sample_size": 22
+        }
+      }
+    ]
+  },
+  "comparison": {
+    "sample_size": 12,
+    "results": [
+      {
+        "method": "Existing workflow",
+        "strategy": "baseline",
+        "accuracy": 0.5,
+        "resolved_rate": 0.25,
+        "review_request_rate": 0.75,
+        "incorrect_exclusions": 0,
+        "incorrect_holds": 1,
+        "tool_calls": 134,
+        "additional_retrieval_calls": 18,
+        "memory_hints_retrieved": 0,
+        "operator_interventions": 9,
+        "setup_confirmations": 7,
+        "p50_latency_ms": 17.9665,
+        "p95_latency_ms": 19.604449999999996,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "mode": "deterministic",
+        "actual_modes": [
+          "baseline"
+        ],
+        "memory_retrieval_calls": 0
+      },
+      {
+        "method": "Fixed retrieval",
+        "strategy": "fixed",
+        "accuracy": 1.0,
+        "resolved_rate": 0.4166666666666667,
+        "review_request_rate": 0.5833333333333334,
+        "incorrect_exclusions": 0,
+        "incorrect_holds": 0,
+        "tool_calls": 202,
+        "additional_retrieval_calls": 48,
+        "memory_hints_retrieved": 0,
+        "operator_interventions": 7,
+        "setup_confirmations": 7,
+        "p50_latency_ms": 27.2675,
+        "p95_latency_ms": 33.44195,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "mode": "deterministic",
+        "actual_modes": [
+          "fixed_retrieval"
+        ],
+        "memory_retrieval_calls": 0
+      },
+      {
+        "method": "Adaptive investigator",
+        "strategy": "adaptive",
+        "accuracy": 1.0,
+        "resolved_rate": 0.4166666666666667,
+        "review_request_rate": 0.5833333333333334,
+        "incorrect_exclusions": 0,
+        "incorrect_holds": 0,
+        "tool_calls": 152,
+        "additional_retrieval_calls": 23,
+        "memory_hints_retrieved": 10,
+        "operator_interventions": 7,
+        "setup_confirmations": 7,
+        "p50_latency_ms": 23.878999999999998,
+        "p95_latency_ms": 29.227249999999998,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "mode": "deterministic",
+        "actual_modes": [
+          "deterministic_fallback"
+        ],
+        "memory_retrieval_calls": 10
+      },
+      {
+        "method": "Adaptive without memory",
+        "strategy": "adaptive",
+        "accuracy": 1.0,
+        "resolved_rate": 0.4166666666666667,
+        "review_request_rate": 0.5833333333333334,
+        "incorrect_exclusions": 0,
+        "incorrect_holds": 0,
+        "tool_calls": 132,
+        "additional_retrieval_calls": 13,
+        "memory_hints_retrieved": 0,
+        "operator_interventions": 7,
+        "setup_confirmations": 7,
+        "p50_latency_ms": 19.3405,
+        "p95_latency_ms": 22.833999999999996,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "mode": "deterministic",
+        "actual_modes": [
+          "deterministic_fallback"
+        ],
+        "memory_retrieval_calls": 0
+      }
+    ]
+  },
+  "status": "passed",
+  "cleanup": "Isolated containers stopped; test volume retained; original app untouched.",
+  "finished_at": "2026-10-22T11:52:56.968065+00:00",
+  "check_count": 59
+}
