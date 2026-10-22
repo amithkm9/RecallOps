@@ -1,0 +1,9 @@
+{
+  "source": "Example only — replace with your labelled dataset",
+  "labeler": "Example author — replace with actual reviewer",
+  "independent_review_declared": false,
+  "cases": [
+    {"name":"Confirmed recalled shipment", "lot":null, "claims":[{"lot":"A1","accepted":true}], "expected":"affected", "split":"development"},
+    {"name":"Ambiguous shipment association", "lot":null, "claims":[{"lot":"A1","accepted":false},{"lot":"B2","accepted":false}], "expected":"review", "split":"development"}
+  ]
+}
