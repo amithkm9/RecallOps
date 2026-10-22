@@ -4,6 +4,14 @@ A working grocery recall investigation application for Future Founders: Data-Cen
 
 **Current status:** the local end-to-end replay works. This is a hackathon MVP, not a production-certified safety service. See [PLAN.md](PLAN.md) for verified completion, remaining work and release gates. No Aiven deployment has been performed.
 
+## Investigator extension
+
+Select **Start investigator demo** in replay mode for the new journey: missing batch → delivery search → explicit shipment confirmation → 24-unit hold → evidence experiment → human review. A companion case demonstrates an honest unresolved outcome. Delivery CSVs and labelled text PDFs retain their original bytes and row/page provenance; accepted claims supplement an investigation without overwriting warehouse stock. A bounded optional model planner selects scoped retrieval tools, with labelled deterministic fallback.
+
+The incident workspace includes targeted questions, evidence revisions, frozen read-only experiments, attributed review resolution, freshness, and retrieval hints. Evaluation compares the existing workflow, fixed retrieval, adaptive retrieval, and memory removal using the same synthetic evidence. It also accepts externally labelled JSON; declared independence is never treated as verified. See [implementation and verification status](docs/investigator-status.md), [operator guide](docs/investigator-guide.md), [five-minute demo](docs/investigator-demo.md), [editable pitch](docs/recallops-pitch.pptx), and [pilot plan](docs/pilot-plan.md).
+
+Operator confirmation requires a token. Existing local development without a bootstrap token can create a named credential through **Data & settings → Operations & access → Access & stores**; see the guide. Local setup does not need cloud access. The competition's Aiven deployment remains pending account/service configuration; [deployment files and checks](docs/deployment.md) are prepared.
+
 ## Run locally
 
 **Aiven, GitHub and cloud accounts are not required for local use.** Docker Compose starts both the application and PostgreSQL on your computer. Aiven is an optional deployment destination. Follow [the local walkthrough](docs/local-walkthrough.md) for the complete operator journey.
@@ -75,7 +83,7 @@ Copy `.env.example` for the full list. Never commit populated secrets.
 | `OPERATOR_TOKEN` | Bearer token for protected access and all human reviews/releases |
 | `DEMO_ENABLED` | Enable controlled historical replay |
 | `PUBLIC_DEMO` | Restrict unauthenticated access to fictional demo data; use a separate demo deployment/database |
-| `LLM_API_KEY`, `LLM_BASE_URL`, `LLM_MODEL` | Optional compatible chat-completions provider, server-side only |
+| `LLM_API_KEY`, `LLM_BASE_URL`, `LLM_MODEL` | Optional compatible chat-completions provider, server-side only. `OPENAI_API_KEY` / `openai_api_key` aliases are supported. |
 | `SOURCE_REFRESH_SECONDS` | Automatic refresh interval; `0` disables the scheduler |
 | `SOURCE_MAX_RECORDS` | Per-query scan cap; default 1000 |
 | `WORKER_ENABLED` | Run the PostgreSQL event worker with the API |
@@ -95,7 +103,7 @@ RECALLOPS_URL=http://localhost:8080 backend/.venv/bin/python scripts/demo.py
 
 `make e2e` adds demonstration/benchmark records to the local application database. Backend pytest cases use a separate `recallops_test` database. Never run this test command against a production database. The application connection needs local database-creation permission for that test setup.
 
-Latest recorded backend run: **48 passed**. Component run: **4 passed**. The latest **2 isolated Chromium end-to-end tests pass**, covering the full operator journey and mobile navigation. Benchmark results are actual measurements in [last-benchmark.json](docs/last-benchmark.json), with interpretation in [evaluation.md](docs/evaluation.md).
+Latest recorded backend run: **71 passed**. Component run: **4 passed**. **9 browser tests** and **37 live-service integration checks** passed. A real official PDF was retrieved and extracted; a private backup was restored into a separate database. See [remediation results](docs/remediation-report.md) and [operating instructions](docs/operations.md).
 
 ## Repository
 
@@ -119,4 +127,8 @@ Deployment preparation: [Aiven guide](docs/deployment.md) and [API request templ
 
 ## Material limitations
 
-No POS integration or external notifications are sent. There is no supplier API connector or document/PDF extraction yet; supplier evidence in the showcase is a labeled replay event. Complex lot expressions conservatively require review. A new event reruns the graph with durable state and idempotent actions; native LangGraph checkpoint-level resume is not implemented. Live provider behavior has not been verified with a real LLM key. The benchmark is small, synthetic and authored alongside the system, not an independently audited or held-out production evaluation. Enterprise tenancy, individual identities, rate limits, retention, monitoring and load testing remain future work. Aiven provisioning and paid services require separate authorization and credentials.
+No POS action or external notification is sent. Scoped, ordered inventory-event intake and supplier statements/corrections work, but real retailer/vendor accounts have not been connected. Official PDFs can be archived and text-extracted for human review; OCR and arbitrary complex scope interpretation are not claimed. Model suggestions stay unverified trace content; operational drafts use persisted facts. Named credentials, store boundaries, rate/body/origin limits, recovery controls, monitoring endpoints and backup/restore tooling are implemented. SSO, hosted HTTPS, offsite backup/alert scheduling, sustained production capacity and native graph checkpoint-level resume remain unverified or unimplemented. Independent labels must come from a separate reviewer; the built-in benchmark remains a development suite. Aiven deployment is optional and has not occurred.
+
+## New operator features and live checks
+
+See [supplier evidence, model connection checks, and reproducible live verification](docs/feature-validation.md). The redesigned product architecture and customer journeys are documented in [the product design guide](docs/product-design.md).
