@@ -1,10 +1,23 @@
-import { describe, it, expect } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { afterEach, describe, it, expect } from "vitest";
+import { cleanup, render, screen, fireEvent } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import { Badge, Empty, IncidentTable } from "./common";
+import { Badge, Empty, ErrorBox, IncidentTable } from "./common";
+import { ApiError } from "../api";
 import { Button } from "./ui/button";
 
+afterEach(cleanup);
+
 describe("operator interface", () => {
+  it("offers credential recovery on an authentication error", () => {
+    render(
+      <ErrorBox
+        error={new ApiError("Invalid or revoked access credential.", 401)}
+      />,
+    );
+    expect(
+      screen.getByRole("button", { name: "Clear saved token & open settings" }),
+    ).toBeInTheDocument();
+  });
   it("labels uncertain decisions clearly", () => {
     render(<Badge value="review" />);
     expect(screen.getByText("review")).toBeInTheDocument();

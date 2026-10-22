@@ -174,15 +174,25 @@ export interface Evaluation {
 export function token() {
   return sessionStorage.getItem("recallops-token") || "";
 }
-export async function api<T>(
-  path: string,
-  options: RequestInit = {},
-): Promise<T> {
-  const headers = new Headers(options.headers);
-  if (token()) headers.set("Authorization", `Bearer ${token()}`);
-  if (options.body && !(options.body instanceof FormData))
-    headers.set("Content-Type", "application/json");
-  const r = await fetch(`/api${path}`, { ...options, headers });
+export function saveToken(value: string) {
+  const normalized = value
+    .trim()
+    .replace(/^Bearer\s+/i, "")
+    .trim();
+  if (normalized) sessionStorage.setItem("recallops-token", normalized);
+  else sessionStorage.removeItem("recallops-token");
+  window.dispatchEvent(new Event("recallops-auth-change"));
+}
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    public status: number,
+  ) {
+    super(message);
+    this.name = "ApiError";
+  }
+}
+async function readResponse<T>(r: Response): Promise<T> {
   if (!r.ok) {
     const e = await r
       .json()
@@ -198,9 +208,59 @@ export async function api<T>(
       : typeof detail === "string"
         ? detail
         : "Request failed";
-    throw new Error(message);
+    throw new ApiError(message, r.status);
   }
   return r.json() as Promise<T>;
+}
+export async function validateAndSaveToken(value: string) {
+  const normalized = value
+    .trim()
+    .replace(/^Bearer\s+/i, "")
+    .trim();
+  if (normalized) {
+    // Validate the proposed credential, not the one already saved in this tab.
+    await readResponse(
+      await fetch("/api/stores", {
+        headers: { Authorization: `Bearer ${normalized}` },
+      }),
+    );
+  }
+  saveToken(normalized);
+}
+export async function api<T>(
+  path: string,
+  options: RequestInit = {},
+): Promise<T> {
+  const headers = new Headers(options.headers);
+  const sentToken = token();
+  if (sentToken) headers.set("Authorization", `Bearer ${sentToken}`);
+  if (options.body && !(options.body instanceof FormData))
+    headers.set("Content-Type", "application/json");
+  let r = await fetch(`/api${path}`, { ...options, headers });
+  if (
+    r.status === 401 &&
+    sentToken &&
+    (options.method || "GET").toUpperCase() === "GET"
+  ) {
+    // Only an explicitly open local development server permits anonymous recovery.
+    // Never retry writes, downgrade production access, or discard a newer credential.
+    const config = await fetch("/api/settings")
+      .then((response) => (response.ok ? response.json() : null))
+      .catch(() => null);
+    if (
+      config?.mode === "development" &&
+      config.auth_required === false &&
+      (!token() || token() === sentToken)
+    ) {
+      if (token() === sentToken) {
+        saveToken("");
+        window.dispatchEvent(new Event("recallops-local-access-recovered"));
+      }
+      headers.delete("Authorization");
+      r = await fetch(`/api${path}`, { ...options, headers });
+    }
+  }
+  return readResponse<T>(r);
 }
 export const post = <T>(path: string, body: unknown = {}) =>
   api<T>(path, { method: "POST", body: JSON.stringify(body) });

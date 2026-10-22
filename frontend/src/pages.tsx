@@ -1,5 +1,5 @@
 import { Operations } from "./components/operations";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
@@ -27,6 +27,9 @@ import {
   post,
   useApi,
   when,
+  token,
+  saveToken,
+  validateAndSaveToken,
   type Dashboard,
   type Incident,
   type Inventory,
@@ -792,9 +795,24 @@ export function InventoryPage() {
 }
 export function SettingsPage() {
   const { data, error } = useApi<Settings>("/settings");
-  const [key, setKey] = useState("");
+  const [key, setKey] = useState(token);
   const [saved, setSaved] = useState(false);
+  useEffect(() => {
+    const changed = () => setKey(token());
+    window.addEventListener("recallops-auth-change", changed);
+    return () => window.removeEventListener("recallops-auth-change", changed);
+  }, []);
   const client = useQueryClient();
+  const credentialSave = useMutation({
+    mutationFn: () => validateAndSaveToken(key),
+    onSuccess: () => {
+      setKey(token());
+      setSaved(true);
+      sync.reset();
+      modelCheck.reset();
+      void client.invalidateQueries();
+    },
+  });
   const modelCheck = useMutation({
     mutationFn: () =>
       post<{
@@ -968,16 +986,36 @@ export function SettingsPage() {
             />
             <Button
               variant="outline"
+              disabled={credentialSave.isPending}
+              onClick={() => credentialSave.mutate()}
+            >
+              {credentialSave.isPending
+                ? "Checking credential…"
+                : "Save for this session"}
+            </Button>
+            <Button
+              variant="outline"
+              disabled={credentialSave.isPending}
               onClick={() => {
-                sessionStorage.setItem("recallops-token", key);
-                window.dispatchEvent(new Event("recallops-auth-change"));
+                saveToken("");
+                setKey("");
                 setSaved(true);
+                credentialSave.reset();
+                sync.reset();
+                modelCheck.reset();
                 void client.invalidateQueries();
               }}
             >
-              Save for this session
+              Clear saved token
             </Button>
-            {saved && <p role="status">Token saved to this browser session.</p>}
+            <ErrorBox error={credentialSave.error} />
+            {saved && (
+              <p role="status">
+                {token()
+                  ? "Credential verified and saved to this browser session."
+                  : "Saved token cleared. Local setup is available when this server allows it."}
+              </p>
+            )}
             <small>
               Model credentials are configured on the server and never sent to
               the browser.

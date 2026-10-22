@@ -9,7 +9,8 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Incident } from "../api";
-import { when } from "../api";
+import { ApiError, saveToken, when } from "../api";
+import { Button } from "./ui/button";
 export function Badge({ value }: { value: string }) {
   return (
     <span className={`badge badge-${value}`}>{value.replaceAll("_", " ")}</span>
@@ -93,6 +94,17 @@ export function ErrorBox({ error }: { error: Error | null }) {
     <div className="error" role="alert">
       <AlertCircle size={18} />
       {error.message}
+      {error instanceof ApiError && error.status === 401 && (
+        <Button
+          variant="outline"
+          onClick={() => {
+            saveToken("");
+            window.location.assign("/settings");
+          }}
+        >
+          Clear saved token & open settings
+        </Button>
+      )}
     </div>
   ) : null;
 }

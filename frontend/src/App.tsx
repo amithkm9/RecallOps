@@ -60,6 +60,7 @@ export default function App() {
   const [open, setOpen] = useState(false);
   const [connected, setConnected] = useState(false);
   const [authVersion, setAuthVersion] = useState(0);
+  const [accessRecovered, setAccessRecovered] = useState(false);
   const client = useQueryClient();
   const location = useLocation();
   const navigate = useNavigate();
@@ -69,6 +70,12 @@ export default function App() {
     const update = () => setAuthVersion((version) => version + 1);
     window.addEventListener("recallops-auth-change", update);
     return () => window.removeEventListener("recallops-auth-change", update);
+  }, []);
+  useEffect(() => {
+    const recovered = () => setAccessRecovered(true);
+    window.addEventListener("recallops-local-access-recovered", recovered);
+    return () =>
+      window.removeEventListener("recallops-local-access-recovered", recovered);
   }, []);
   useEffect(() => {
     setOpen(false);
@@ -268,6 +275,15 @@ export default function App() {
             </div>
           </div>
           <main id="main-content" tabIndex={-1}>
+            {accessRecovered && (
+              <div className="mode-notice" role="status">
+                The saved access token was rejected and has been cleared. Local
+                development access is restored.{" "}
+                <NavLink to="/settings">
+                  Create or enter a valid credential in Data & settings
+                </NavLink>
+              </div>
+            )}
             <Routes>
               <Route path="/" element={<DashboardPage />} />
               <Route path="/incidents" element={<IncidentsPage />} />
