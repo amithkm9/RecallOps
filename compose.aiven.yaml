@@ -1,0 +1,20 @@
+# Aiven Runtime scan manifest for the app only.
+# Connect an EXISTING managed PostgreSQL service in Aiven Console and expose
+# DATABASE_URL. Add OPERATOR_TOKEN as a runtime secret before deployment.
+# This file does not request a new database service or contain credentials.
+services:
+  recallops:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      ENVIRONMENT: production
+      PORT: "8080"
+      DEMO_ENABLED: "true"
+      PUBLIC_DEMO: "true"
+      WORKER_ENABLED: "true"
+      SOURCE_REFRESH_SECONDS: "3600"
+      SOURCE_MAX_RECORDS: "1000"
+      MUTATION_LIMIT_PER_MINUTE: "120"

@@ -1,0 +1,31 @@
+{
+  "service_name": "recallops",
+  "service_type": "application",
+  "cloud": "aws-eu-west-1",
+  "plan": "startup-50-1024",
+  "user_config": {
+    "application": {
+      "source": {
+        "repository_url": "https://github.com/YOUR_ORG/RecallOps",
+        "branch": "main",
+        "build_path": "./",
+        "containerfile_path": "Dockerfile"
+      },
+      "ports": [{"name": "http", "port": 8080, "protocol": "HTTP"}],
+      "environment_variables": [
+        {"key": "ENVIRONMENT", "value": "production", "kind": "variable"},
+        {"key": "OPERATOR_TOKEN", "value": "REPLACE_WITH_A_LONG_RANDOM_SECRET", "kind": "secret"},
+        {"key": "DEMO_ENABLED", "value": "true", "kind": "variable"},
+        {"key": "PUBLIC_DEMO", "value": "false", "kind": "variable"}
+      ]
+    }
+  },
+  "service_integrations": [{
+    "integration_type": "application_service_credential",
+    "source_service": "YOUR_EXISTING_POSTGRES_SERVICE",
+    "user_config": {
+      "service_type": "pg",
+      "exposed_values": {"connection_string": {"environment_variable_key": "DATABASE_URL"}}
+    }
+  }]
+}
