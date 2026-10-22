@@ -1,0 +1,11 @@
+{
+  "source_url": "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/rappelconso-v2-gtin-trie/records",
+  "query": "date_publication < date'2025-01-01' order by date_publication desc",
+  "retrieved_at": "2026-10-22T08:35:43.079362+00:00",
+  "sha256": "657928e9225999b8510112b340f00936ebcaefe7fdda4ee7ed3660dae178db67",
+  "dataset": "rappelconso-v2-gtin-trie",
+  "license": "Licence Ouverte / Open Licence 2.0",
+  "synthetic": false,
+  "scenario_recall_id": "17010",
+  "notes": "Unmodified API records. Scenario inventory and supplier updates are fictional and stored separately."
+}
