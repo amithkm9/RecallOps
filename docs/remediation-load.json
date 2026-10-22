@@ -1,0 +1,10 @@
+{
+  "requests": 120,
+  "concurrency": 8,
+  "successes": 120,
+  "elapsed_seconds": 0.5450668339999538,
+  "p50_ms": 34.29249999999229,
+  "p95_ms": 66.63418330044806,
+  "requests_per_second": 220.1564881858326,
+  "scope": "Local read-only HTTP/DB smoke load; no production capacity or sustained-write claim."
+}

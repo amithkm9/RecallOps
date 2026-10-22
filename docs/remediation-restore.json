@@ -1,0 +1,8 @@
+{
+  "database": "recallops_restore_20261022_1028",
+  "migration": "0003",
+  "decisions": 284,
+  "active_holds": 88,
+  "orphan_evidence_links": 0,
+  "provenance_triggers": 6
+}

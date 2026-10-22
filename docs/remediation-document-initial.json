@@ -1,0 +1,10 @@
+{
+  "evidence_id": "3fc04598-9806-461f-aaab-ca82ef004aec",
+  "event_id": "59944b7c-ecfe-412b-9a7c-51b6da5fecb8",
+  "text_status": "extraction_failed",
+  "scope_verified": false,
+  "sha256_matches": true,
+  "pages": 0,
+  "bytes": 267289,
+  "source_url": "https://rappel.conso.gouv.fr/affichettepdf/17010/interne"
+}
