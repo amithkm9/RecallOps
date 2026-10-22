@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1160" viewBox="0 0 1440 1160" role="img" aria-labelledby="title desc">
+<title id="title">RecallOps system architecture</title><desc id="desc">Official recalls, inventory and human evidence enter FastAPI. PostgreSQL retains versions, documents and an event outbox. An embedded worker executes a LangGraph investigation with optional model-selected read-only retrieval. Deterministic checks produce decisions and internal holds. The React interface reads data through the API and receives server-sent events.</desc>
+<rect width="1440" height="1160" rx="28" fill="#f6f8f2"/>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9Z" fill="#56786a"/></marker></defs>
+<text x="48" y="54" fill="#17685b" font-size="18" font-weight="700" font-family="Arial, Helvetica, sans-serif">RECALLOPS / SYSTEM ARCHITECTURE</text>
+<text x="48" y="104" fill="#173f38" font-size="34" font-weight="700" font-family="Arial, Helvetica, sans-serif">Data enters. Evidence is checked. Decisions stay auditable.</text>
+<rect x="48" y="150" width="420" height="130" rx="18" fill="#fff" stroke="#c7d6cb"/>
+<text x="72" y="187" fill="#173f38" font-size="25" font-weight="700" font-family="Arial, Helvetica, sans-serif">Official recall data</text>
+<text x="72" y="222" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Government API or archived JSON</text>
+<text x="72" y="251" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Identifiers, batches, dates and versions</text>
+<rect x="510" y="150" width="420" height="130" rx="18" fill="#fff" stroke="#c7d6cb"/>
+<text x="534" y="187" fill="#173f38" font-size="25" font-weight="700" font-family="Arial, Helvetica, sans-serif">Store inventory</text>
+<text x="534" y="222" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">CSV imports or ordered API events</text>
+<text x="534" y="251" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">SKU, barcode, batch and quantity</text>
+<rect x="972" y="150" width="420" height="130" rx="18" fill="#fff" stroke="#c7d6cb"/>
+<text x="996" y="187" fill="#173f38" font-size="25" font-weight="700" font-family="Arial, Helvetica, sans-serif">People and documents</text>
+<text x="996" y="222" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Delivery CSV / labelled text PDF</text>
+<text x="996" y="251" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Supplier statements / staff answers</text>
+<path d="M258 280 V312 H720 V342" fill="none" stroke="#56786a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path d="M720 280 V342" fill="none" stroke="#56786a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path d="M1182 280 V312 H720" fill="none" stroke="#56786a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="440" y="350" width="560" height="130" rx="18" fill="#fff" stroke="#c7d6cb"/>
+<text x="464" y="387" fill="#173f38" font-size="25" font-weight="700" font-family="Arial, Helvetica, sans-serif">FastAPI application</text>
+<text x="464" y="422" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Validate input, credential role and store scope</text>
+<text x="464" y="451" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Save evidence and enqueue investigation work</text>
+<rect x="48" y="350" width="330" height="130" rx="18" fill="#fff" stroke="#c7d6cb"/>
+<text x="72" y="387" fill="#173f38" font-size="25" font-weight="700" font-family="Arial, Helvetica, sans-serif">React interface</text>
+<text x="72" y="422" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Queries and operator actions</text>
+<text x="72" y="451" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Built assets served by FastAPI</text>
+<path d="M378 415 H428" fill="none" stroke="#56786a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path d="M600 480 V515 H350 V548" fill="none" stroke="#56786a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="48" y="555" width="605" height="220" rx="18" fill="#eaf2e2" stroke="#c7d6cb"/>
+<text x="72" y="592" fill="#173f38" font-size="25" font-weight="700" font-family="Arial, Helvetica, sans-serif">PostgreSQL 16</text>
+<text x="72" y="627" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Versioned recall sources + warehouse stock</text>
+<text x="72" y="656" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Original documents + accepted/rejected claims</text>
+<text x="72" y="685" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Event outbox + workflow traces + decisions</text>
+<text x="72" y="714" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Evidence links + internal holds + audit history</text>
+<rect x="787" y="555" width="605" height="220" rx="18" fill="#fff" stroke="#c7d6cb"/>
+<text x="811" y="592" fill="#173f38" font-size="25" font-weight="700" font-family="Arial, Helvetica, sans-serif">Worker + LangGraph investigation</text>
+<text x="811" y="627" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">1. Load recall and relevant stock</text>
+<text x="811" y="656" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">2. Retrieve evidence and identify gaps</text>
+<text x="811" y="685" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">3. Verify identifiers, batches and dates</text>
+<text x="811" y="714" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">4. Record outcome and controlled actions</text>
+<path d="M653 620 H775" fill="none" stroke="#56786a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="666" y="602" fill="#536b63" font-size="18" font-weight="400" font-family="Arial, Helvetica, sans-serif">events</text>
+<path d="M787 716 H665" fill="none" stroke="#56786a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="662" y="748" fill="#536b63" font-size="18" font-weight="400" font-family="Arial, Helvetica, sans-serif">results</text>
+<rect x="1062" y="350" width="330" height="130" rx="18" fill="#f0f1f9" stroke="#c7d6cb"/>
+<text x="1086" y="387" fill="#173f38" font-size="25" font-weight="700" font-family="Arial, Helvetica, sans-serif">Optional model planner</text>
+<text x="1086" y="422" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Selects scoped retrieval tools</text>
+<text x="1086" y="451" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">No direct hold authorization</text>
+<path d="M1227 480 V543" fill="none" stroke="#56786a" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="7 6"/>
+<text x="48" y="1057" fill="#173f38" font-size="23" font-weight="700" font-family="Arial, Helvetica, sans-serif">Every result links back to the source version, stock snapshot and supporting evidence.</text>
+<path d="M350 775 V847" fill="none" stroke="#56786a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="48" y="855" width="605" height="160" rx="18" fill="#fff" stroke="#c7d6cb"/>
+<text x="72" y="892" fill="#173f38" font-size="25" font-weight="700" font-family="Arial, Helvetica, sans-serif">API responses + live progress</text>
+<text x="72" y="927" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Server-sent events update the React interface</text>
+<text x="72" y="956" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Overview · incidents · evidence graph · history</text>
+<text x="72" y="985" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Frozen experiments · evaluations · access</text>
+<path d="M1090 775 V847" fill="none" stroke="#56786a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="787" y="855" width="605" height="160" rx="18" fill="#fff4e8" stroke="#c7d6cb"/>
+<text x="811" y="892" fill="#173f38" font-size="25" font-weight="700" font-family="Arial, Helvetica, sans-serif">Operator action and review</text>
+<text x="811" y="927" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Confirm shipment associations or answer gaps</text>
+<text x="811" y="956" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Review affected, unaffected or conflicting stock</text>
+<text x="811" y="985" fill="#536b63" font-size="21" font-weight="400" font-family="Arial, Helvetica, sans-serif">Release requires authorization and a reason</text>
+<text x="48" y="1098" fill="#536b63" font-size="22" font-weight="400" font-family="Arial, Helvetica, sans-serif">Local runtime: one app container + PostgreSQL. The worker runs inside the API process.</text>
+<text x="48" y="1130" fill="#536b63" font-size="22" font-weight="400" font-family="Arial, Helvetica, sans-serif">Operator actions return through the API. Aiven hosting is prepared and remains undeployed.</text>
+</svg>
