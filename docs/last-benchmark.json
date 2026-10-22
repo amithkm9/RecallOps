@@ -1,0 +1,444 @@
+{
+  "id": "fecb0a2d-6b0d-4194-9929-b94464e136fd",
+  "created_at": "2026-10-22T10:26:54.630674+00:00",
+  "sample_size": 22,
+  "benchmark": "Development-authored synthetic fixtures; 22 labeled cases + 2 stateful revision transitions. Independent labeling has not been verified. RecallOps latency includes PostgreSQL and LangGraph; baseline latency is in-process matching only.",
+  "results": [
+    {
+      "method": "Product name",
+      "precision": 0.3333333333333333,
+      "recall": 0.6,
+      "f1": 0.42857142857142855,
+      "false_hold_rate": 1.0,
+      "review_accuracy": 0.0,
+      "latency_ms": 0.01806263625522578,
+      "revision_rate": null,
+      "missed_hold_rate": 0.4,
+      "review_request_rate": 0.0,
+      "p50_latency_ms": 0.016542000139452284,
+      "p95_latency_ms": 0.02915559989560279,
+      "counts": {
+        "true_positives": 6,
+        "false_positives": 12,
+        "false_negatives": 4,
+        "sample_size": 22
+      }
+    },
+    {
+      "method": "GTIN only",
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6666666666666666,
+      "false_hold_rate": 0.8333333333333334,
+      "review_accuracy": 0.0,
+      "latency_ms": 0.021204499841008907,
+      "revision_rate": null,
+      "missed_hold_rate": 0.0,
+      "review_request_rate": 0.0,
+      "p50_latency_ms": 0.02041649986495031,
+      "p95_latency_ms": 0.03011699973285431,
+      "counts": {
+        "true_positives": 10,
+        "false_positives": 10,
+        "false_negatives": 0,
+        "sample_size": 22
+      }
+    },
+    {
+      "method": "RecallOps",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "false_hold_rate": 0.0,
+      "review_accuracy": 1.0,
+      "latency_ms": 24.52872727272727,
+      "revision_rate": 1.0,
+      "missed_hold_rate": 0.0,
+      "review_request_rate": 0.36363636363636365,
+      "p50_latency_ms": 21.094,
+      "p95_latency_ms": 51.02065,
+      "counts": {
+        "true_positives": 10,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "sample_size": 22
+      }
+    }
+  ],
+  "cases": [
+    {
+      "name": "Exact GTIN and lot",
+      "scope": "3760099533007$A1$non concern\u00e9$$",
+      "gtin": "3760099533007",
+      "lot": "A1",
+      "expected": "affected",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "affected"
+      },
+      "run_id": "306bdfae-8444-4ff7-8a0b-ec19925a206a",
+      "event_to_decision_ms": 25.935
+    },
+    {
+      "name": "Same product, different lot",
+      "scope": "3760099533007$A1$non concern\u00e9$$",
+      "gtin": "3760099533007",
+      "lot": "B2",
+      "expected": "unaffected",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "unaffected"
+      },
+      "run_id": "950f3535-ffd2-475a-8b6c-d7494c940741",
+      "event_to_decision_ms": 20.391
+    },
+    {
+      "name": "Missing warehouse lot",
+      "scope": "3760099533007$A1$non concern\u00e9$$",
+      "gtin": "3760099533007",
+      "lot": null,
+      "expected": "review",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "review"
+      },
+      "run_id": "740f0fb9-056c-4ea3-8bb5-53db688d8ae6",
+      "event_to_decision_ms": 23.296
+    },
+    {
+      "name": "Explicit all lots",
+      "scope": "3760099533007$tous les lots$non concern\u00e9$$",
+      "gtin": "3760099533007",
+      "lot": "OTHER",
+      "expected": "affected",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "affected"
+      },
+      "run_id": "89246cb8-07ee-4be1-9210-52a65d03e48c",
+      "event_to_decision_ms": 21.441
+    },
+    {
+      "name": "All lots with unknown inventory lot",
+      "scope": "3760099533007$tous les lots$non concern\u00e9$$",
+      "gtin": "3760099533007",
+      "lot": null,
+      "expected": "affected",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "affected"
+      },
+      "run_id": "8db96b2c-67a8-4607-b862-31c67ea0636a",
+      "event_to_decision_ms": 20.555
+    },
+    {
+      "name": "Multiple affected lots",
+      "scope": "3760099533007$A1;B2$non concern\u00e9$$",
+      "gtin": "3760099533007",
+      "lot": "B2",
+      "expected": "affected",
+      "product_name": "Salmon fillet",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "unaffected",
+        "GTIN only": "affected",
+        "RecallOps": "affected"
+      },
+      "run_id": "2189e641-390d-4d9d-9131-bd7a46837734",
+      "event_to_decision_ms": 20.346
+    },
+    {
+      "name": "Similar name, different identifier",
+      "scope": "3760099533007$A1$non concern\u00e9$$",
+      "gtin": "3492610004108",
+      "lot": "A1",
+      "expected": "unaffected",
+      "product_name": "Smoked salmon slices",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "unaffected",
+        "RecallOps": "unaffected"
+      },
+      "run_id": "bae7200d-202c-4976-ad9e-5496610018db",
+      "event_to_decision_ms": 15.201
+    },
+    {
+      "name": "Leading zero identifier",
+      "scope": "04056489840961$A1$non concern\u00e9$$",
+      "gtin": "04056489840961",
+      "lot": "A1",
+      "expected": "affected",
+      "product_name": "Pet food",
+      "recall_name": "Croquettes premium",
+      "predictions": {
+        "Product name": "unaffected",
+        "GTIN only": "affected",
+        "RecallOps": "affected"
+      },
+      "run_id": "d257545a-07e9-4a25-a6f4-0fd4eba7bccc",
+      "event_to_decision_ms": 51.566
+    },
+    {
+      "name": "GTIN-13 and zero-padded GTIN-14",
+      "scope": "03760099533007$A1$non concern\u00e9$$",
+      "gtin": "3760099533007",
+      "lot": "A1",
+      "expected": "affected",
+      "product_name": "Fish",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "unaffected",
+        "GTIN only": "affected",
+        "RecallOps": "affected"
+      },
+      "run_id": "48c24428-0985-4656-aafe-36166d96db94",
+      "event_to_decision_ms": 55.013
+    },
+    {
+      "name": "Date-constrained included",
+      "scope": "3760099533007$A1$date limite de consommation$2024-12-18$2024-12-20",
+      "gtin": "3760099533007",
+      "lot": "A1",
+      "expires_on": "2024-12-19",
+      "expected": "affected",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "affected"
+      },
+      "run_id": "ec05345d-65f3-45d6-a7f4-29ea37121cd6",
+      "event_to_decision_ms": 40.659
+    },
+    {
+      "name": "Date-constrained excluded",
+      "scope": "3760099533007$A1$date limite de consommation$2024-12-18$2024-12-20",
+      "gtin": "3760099533007",
+      "lot": "A1",
+      "expires_on": "2024-12-25",
+      "expected": "unaffected",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "unaffected"
+      },
+      "run_id": "4185eabb-d81a-4569-bd6f-7f0bfb616e0c",
+      "event_to_decision_ms": 21.145
+    },
+    {
+      "name": "Missing required date",
+      "scope": "3760099533007$A1$date limite de consommation$2024-12-18$2024-12-20",
+      "gtin": "3760099533007",
+      "lot": "A1",
+      "expected": "review",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "review"
+      },
+      "run_id": "f970468d-b0ee-4de3-8fee-c3e32d3585a2",
+      "event_to_decision_ms": 19.745
+    },
+    {
+      "name": "Duplicate source targets",
+      "scope": "3760099533007$A1$non concern\u00e9$$|3760099533007$A1$non concern\u00e9$$",
+      "gtin": "3760099533007",
+      "lot": "A1",
+      "expected": "affected",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "affected"
+      },
+      "run_id": "ed581836-a449-4535-a1a0-a56a1c55b185",
+      "event_to_decision_ms": 22.577
+    },
+    {
+      "name": "Malformed identifier scope",
+      "scope": "3.760099533007e12$A1$non concern\u00e9$$",
+      "fallback_gtin": "3760099533007",
+      "gtin": "3760099533007",
+      "lot": "A1",
+      "expected": "review",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "review"
+      },
+      "run_id": "1d1ca01c-5561-4835-929d-4ca3fe5c5367",
+      "event_to_decision_ms": 26.804
+    },
+    {
+      "name": "Supplier contradicts warehouse",
+      "scope": "3760099533007$A1$non concern\u00e9$$",
+      "gtin": "3760099533007",
+      "lot": "A1",
+      "supplier_lot": "B2",
+      "expected": "conflict",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "conflict"
+      },
+      "run_id": "c0504c67-c359-41f9-9066-6b44888ef4c8",
+      "event_to_decision_ms": 21.81
+    },
+    {
+      "name": "Complex lot range",
+      "scope": "3760099533007$A1 \u00e0 A9$non concern\u00e9$$",
+      "gtin": "3760099533007",
+      "lot": "A5",
+      "expected": "review",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "review"
+      },
+      "run_id": "df6a53c3-1180-46e5-96f0-47c05f6b185a",
+      "event_to_decision_ms": 19.8
+    },
+    {
+      "name": "Unspecified lot scope",
+      "scope": "3760099533007$$non concern\u00e9$$",
+      "gtin": "3760099533007",
+      "lot": "A1",
+      "expected": "review",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "review"
+      },
+      "run_id": "651ca763-d3a2-4aac-b8d3-2d1d1b184cb3",
+      "event_to_decision_ms": 19.25
+    },
+    {
+      "name": "Case insensitive lot",
+      "scope": "3760099533007$ab-001$non concern\u00e9$$",
+      "gtin": "3760099533007",
+      "lot": "AB-001",
+      "expected": "affected",
+      "product_name": "Atlantic fish",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "unaffected",
+        "GTIN only": "affected",
+        "RecallOps": "affected"
+      },
+      "run_id": "5c0bce74-e86c-476f-bea1-fe56c4cb3926",
+      "event_to_decision_ms": 21.145
+    },
+    {
+      "name": "Second target date matches",
+      "scope": "3760099533007$A1$date limite de consommation$2024-12-18$|3760099533007$A1$date limite de consommation$2024-12-20$",
+      "gtin": "3760099533007",
+      "lot": "A1",
+      "expires_on": "2024-12-20",
+      "expected": "affected",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "affected"
+      },
+      "run_id": "2d20c52c-1e16-4326-a765-d05525e20919",
+      "event_to_decision_ms": 21.043
+    },
+    {
+      "name": "Malformed date",
+      "scope": "3760099533007$A1$date limite de consommation$not-a-date$",
+      "gtin": "3760099533007",
+      "lot": "A1",
+      "expires_on": "2024-12-20",
+      "expected": "review",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "review"
+      },
+      "run_id": "dd720d3f-bbf6-45dc-9485-00f11193010b",
+      "event_to_decision_ms": 18.779
+    },
+    {
+      "name": "Date-only scope needs lot evidence",
+      "scope": "3760099533007$$date limite de consommation$2024-12-20$",
+      "gtin": "3760099533007",
+      "lot": null,
+      "expires_on": "2024-12-20",
+      "expected": "review",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "affected",
+        "RecallOps": "review"
+      },
+      "run_id": "de943339-c1cd-4527-9784-ab08651edbc4",
+      "event_to_decision_ms": 18.715
+    },
+    {
+      "name": "Other identifier, identical name",
+      "scope": "3760099533007$A1$non concern\u00e9$$",
+      "gtin": "3261430001372",
+      "lot": "A1",
+      "expected": "unaffected",
+      "product_name": "Smoked salmon",
+      "recall_name": "Smoked salmon",
+      "predictions": {
+        "Product name": "affected",
+        "GTIN only": "unaffected",
+        "RecallOps": "unaffected"
+      },
+      "run_id": "70eda3d8-e291-4231-ac4b-71d779d19ae8",
+      "event_to_decision_ms": 14.416
+    },
+    {
+      "name": "Dataset provenance",
+      "source": "Development-authored synthetic fixtures",
+      "labeler": "RecallOps development suite",
+      "independent_review_verified": false,
+      "sha256": "b36fe63fcfb19f2be2191cf0f2fe1dc968ea0d713304bc34c241ee70d924e448",
+      "sample_size": 22
+    },
+    {
+      "name": "Stateful decision revisions",
+      "expected": "review \u2192 affected \u2192 conflict; hold preserved",
+      "transition_count": 2,
+      "successful_revisions": 2,
+      "incident_id": "fed257ae-bcd1-4071-b912-73fb0fc5ad99"
+    }
+  ]
+}

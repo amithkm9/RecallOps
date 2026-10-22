@@ -1,0 +1,97 @@
+{
+  "checked_at": "2026-10-22T09:56:45.295144+00:00",
+  "base_url": "http://127.0.0.1:8088",
+  "inventory_is_synthetic": true,
+  "inventory_mode": "replay",
+  "checks": {
+    "health": {
+      "status": "ok",
+      "database": "postgresql",
+      "api_version": "1"
+    },
+    "model_connection": {
+      "success": true,
+      "mode": "llm_assisted",
+      "model": "gpt-4.1-mini",
+      "latency_ms": 1564.835,
+      "checked_at": "2026-10-22T09:56:46.882441+00:00",
+      "message": "Provider connected and returned a valid investigation plan.",
+      "http_status": null,
+      "provider": {
+        "model": "gpt-4.1-mini-2025-04-14",
+        "request_id": "req_39540b8728604ed9babe1d5b41fd001f",
+        "usage": {
+          "prompt_tokens": 175,
+          "completion_tokens": 135,
+          "total_tokens": 310,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        }
+      }
+    },
+    "official_sync": {
+      "created": 0,
+      "skipped": 1000,
+      "errors": [],
+      "origin": "live",
+      "message": "Imported 0 new versions; skipped 1000 duplicates. Source: live."
+    },
+    "selected_official_recall": {
+      "id": "7a9d1670-dedf-464f-bee6-8aea96de07d1",
+      "product": "100 ballons assortis dynaparty",
+      "published_at": "2026-08-20T11:33:00+00:00",
+      "source_url": "https://rappel.conso.gouv.fr/fiche-rappel/23171/interne",
+      "gtin": "3760361925165",
+      "lot": "43347"
+    },
+    "inventory_import": {
+      "imported": 1,
+      "errors": []
+    },
+    "initial_investigation": {
+      "run_id": "a57cf3de-602a-479f-89c9-430e7cf8f336",
+      "llm_mode": "llm_assisted",
+      "held_units": 3
+    },
+    "supplier_reassessment": {
+      "run_id": "bc2a8d0d-464f-4072-98fd-79259f99b124",
+      "llm_mode": "llm_assisted",
+      "evidence_id": "56e1e4ea-5a37-4062-8be2-42dfe9573670",
+      "verdict": "conflict",
+      "action": "preserve_hold_and_review",
+      "held_units": 3,
+      "duplicate_submission_idempotent": true,
+      "latency_ms": 2253.951,
+      "provider": {
+        "model": "gpt-4.1-mini-2025-04-14",
+        "usage": {
+          "total_tokens": 715,
+          "prompt_tokens": 528,
+          "completion_tokens": 187,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "request_id": "req_28cbc073f0f74b53a1aeaeb6ec16fc42"
+      }
+    }
+  },
+  "incident_id": "15e44dd6-db0a-478e-b3bb-77965e348d8b",
+  "incident_url": "http://127.0.0.1:8088/incidents/15e44dd6-db0a-478e-b3bb-77965e348d8b",
+  "success": true
+}

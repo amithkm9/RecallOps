@@ -1,0 +1,905 @@
+{
+  "started_at": "2026-10-22T09:52:06.307965+00:00",
+  "checks": [
+    {
+      "name": "PostgreSQL health",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Model key loaded by running app",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Government API live ingestion without fixture fallback",
+      "passed": true,
+      "details": {
+        "created": 3,
+        "skipped": 997,
+        "errors": [],
+        "origin": "live",
+        "message": "Imported 3 new versions; skipped 997 duplicates. Source: live."
+      }
+    },
+    {
+      "name": "Archived demonstration scope reverified against live official API",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Initial historical scenario: completed real LLM workflow",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Initial historical scenario: decisions reference evidence",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Known nonaffected lot excluded; missing lot reviewed",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Warehouse confirms recalled lot: completed real LLM workflow",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Warehouse confirms recalled lot: decisions reference evidence",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Exactly one internal hold for 24 units",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Duplicate replay event does not duplicate run or hold",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Supplier contradicts warehouse: completed real LLM workflow",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Supplier contradicts warehouse: decisions reference evidence",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Conflict preserves the same protective hold",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Unauthorized hold release rejected",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "CSV import accepts all three fictional test rows",
+      "passed": true,
+      "details": {
+        "imported": 3,
+        "errors": []
+      }
+    },
+    {
+      "name": "New live-source record with uploaded synthetic stock: completed real LLM workflow",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "New live-source record with uploaded synthetic stock: decisions reference evidence",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Fresh-source matching: affected, excluded, missing",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Fresh-source hold covers exactly seven units",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Supplier intake deduplicates evidence and queued event",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "API supplier correction handled by background worker: completed real LLM workflow",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "API supplier correction handled by background worker: decisions reference evidence",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Supplier API automatically reopens incident and preserves seven-unit hold",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Supplier test evidence remains explicitly synthetic",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "SSE delivers a real investigation transition",
+      "passed": true,
+      "details": {
+        "incident_id": "f77705f1-2c6c-4789-9925-f87011b196b1",
+        "store_id": "3de97340-44f0-459f-96e5-a4869143358e",
+        "kind": "workflow_transition",
+        "actor": "agent",
+        "payload": {
+          "node": "detect_event",
+          "run_id": "ba6cc51b-9fca-4444-a40b-4a9caf92be7b",
+          "message": "detect event"
+        },
+        "id": "e9507c21-f2d1-44a5-afc6-7608ea05bec2",
+        "created_at": "2026-10-22T09:52:35.647421+00:00"
+      }
+    },
+    {
+      "name": "Frontend served",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Workflow decisions and protective holds survive app restart",
+      "passed": true,
+      "details": {
+        "captured_runs_persisted": 5,
+        "active_hold_quantities": [
+          7,
+          24
+        ]
+      }
+    }
+  ],
+  "inventory_and_supplier_data": "Fictional test data, never official stock records",
+  "runs": [
+    {
+      "stage": "Initial historical scenario",
+      "incident_id": "c2097c50-5cf9-4ff9-b109-502412b59a77",
+      "run_id": "43f8de7b-90bd-42d4-aa05-1dcd5eff51ce",
+      "event_id": "ea1a06ca-f450-461d-b09c-0171875b42f2",
+      "status": "completed",
+      "llm_mode": "llm_assisted",
+      "latency_ms": 2538.98,
+      "provider": {
+        "model": "gpt-4.1-mini-2025-04-14",
+        "usage": {
+          "total_tokens": 1125,
+          "prompt_tokens": 798,
+          "completion_tokens": 327,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "request_id": "req_28b6ee7eceab49c5a077f94dbfeb17c2"
+      },
+      "planner_output": {
+        "draft": "UNVERIFIED MODEL WORDING: The product 'saumon fum\u00e9 bio 80 gr os\u00e9 bio' with GTIN 3760099533007 from Fictional Atlantic Foods includes inventory with a known lot 'SAFE-DEMO-LOT' which is confirmed unaffected by the recall based on current evidence. However, there is additional inventory of the same product lacking lot information, preventing a definitive safety determination. Further investigation is required to identify the lot numbers for this inventory and confirm whether they fall within the recall scope. Until such information is obtained and verified, these units should remain under review and not released from hold.",
+        "tools": [
+          "get_supplier_evidence",
+          "get_previous_decisions"
+        ],
+        "provider": {
+          "model": "gpt-4.1-mini-2025-04-14",
+          "usage": {
+            "total_tokens": 1125,
+            "prompt_tokens": 798,
+            "completion_tokens": 327,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "request_id": "req_28b6ee7eceab49c5a077f94dbfeb17c2"
+        },
+        "explanation": "Inventory contains two entries for the same product GTIN 3760099533007 from Fictional Atlantic Foods: one with a known lot 'SAFE-DEMO-LOT' and one with missing lot information. The known lot is verified unaffected per check e300f9d0-d63e-4e33-9621-6053ad960c6d, as it falls outside the affected scope. The entry with missing lot (e706c1d9-0fc8-4ace-a728-1fbce65e5a53) cannot be conclusively assessed due to lack of lot data and incomplete scope parsing, requiring further evidence retrieval to clarify lot assignments or previous decisions on similar cases. Retrieval of supplier evidence may help identify lot details for the unverified inventory. Previous decisions may provide guidance on handling missing lot data in this recall context."
+      },
+      "tools": [
+        "get_recall",
+        "get_recall_version",
+        "search_inventory_by_gtin",
+        "get_previous_decisions",
+        "get_supplier_evidence",
+        "check_lot_constraints",
+        "check_lot_constraints",
+        "llm_investigation_planner",
+        "get_supplier_evidence",
+        "get_previous_decisions",
+        "check_lot_constraints",
+        "check_lot_constraints",
+        "request_human_review",
+        "prepare_supplier_notification",
+        "append_audit_event"
+      ],
+      "decisions": [
+        {
+          "id": "0f73e43a-9bf7-4a85-8f18-1e47e421369f",
+          "incident_id": "c2097c50-5cf9-4ff9-b109-502412b59a77",
+          "run_id": "43f8de7b-90bd-42d4-aa05-1dcd5eff51ce",
+          "inventory_lot_id": "e300f9d0-d63e-4e33-9621-6053ad960c6d",
+          "recall_version_id": "ec31faef-d52a-4e8b-bc5a-613b4c3125fb",
+          "verdict": "unaffected",
+          "explanation": "GTIN matches, but the known lot/date is outside every parsed affected target.",
+          "action": "no_hold",
+          "quantity": 18,
+          "lot": "SAFE-DEMO-LOT",
+          "previous_verdict": null,
+          "created_at": "2026-10-22T09:52:21.984368+00:00",
+          "evidence_ids": [
+            "5a18383a-5d42-45c8-a4ba-25041dfdfd6e",
+            "6aee62c1-1d7d-43f4-9962-79e466e27d9d"
+          ]
+        },
+        {
+          "id": "f2e61a9d-c3b1-46bf-955a-9b8024c761f4",
+          "incident_id": "c2097c50-5cf9-4ff9-b109-502412b59a77",
+          "run_id": "43f8de7b-90bd-42d4-aa05-1dcd5eff51ce",
+          "inventory_lot_id": "e706c1d9-0fc8-4ace-a728-1fbce65e5a53",
+          "recall_version_id": "ec31faef-d52a-4e8b-bc5a-613b4c3125fb",
+          "verdict": "review",
+          "explanation": "Missing lot/date information or unparseable official scope prevents a definitive conclusion. Request human review.",
+          "action": "request_human_review",
+          "quantity": 24,
+          "lot": null,
+          "previous_verdict": null,
+          "created_at": "2026-10-22T09:52:21.987327+00:00",
+          "evidence_ids": [
+            "185a6f15-97f6-4be4-ab6f-a7240d12a710",
+            "5a18383a-5d42-45c8-a4ba-25041dfdfd6e"
+          ]
+        }
+      ],
+      "holds": [],
+      "recall_version_id": "ec31faef-d52a-4e8b-bc5a-613b4c3125fb"
+    },
+    {
+      "stage": "Warehouse confirms recalled lot",
+      "incident_id": "c2097c50-5cf9-4ff9-b109-502412b59a77",
+      "run_id": "b8757654-d397-4726-976d-853c19d86a5a",
+      "event_id": "565d841f-f376-4549-9c53-ade556420d75",
+      "status": "completed",
+      "llm_mode": "llm_assisted",
+      "latency_ms": 3252.357,
+      "provider": {
+        "model": "gpt-4.1-mini-2025-04-14",
+        "usage": {
+          "total_tokens": 1247,
+          "prompt_tokens": 826,
+          "completion_tokens": 421,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "request_id": "req_efdeb472470e4ef287cd99920fc6abe9"
+      },
+      "planner_output": {
+        "draft": "UNVERIFIED MODEL WORDING: The product 'saumon fum\u00e9 bio 80 gr os\u00e9 bio' with GTIN 3760099533007 in lot '24326020' is currently identified as affected by the recall based on matching lot and date criteria. Inventory with this lot should remain on hold pending further verification. The lot 'SAFE-DEMO-LOT' is outside the recall scope and considered unaffected. Further supplier evidence and previous recall decisions should be reviewed to confirm the status of the affected lot and guide subsequent inventory actions.",
+        "tools": [
+          "get_supplier_evidence",
+          "get_previous_decisions"
+        ],
+        "provider": {
+          "model": "gpt-4.1-mini-2025-04-14",
+          "usage": {
+            "total_tokens": 1247,
+            "prompt_tokens": 826,
+            "completion_tokens": 421,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "request_id": "req_efdeb472470e4ef287cd99920fc6abe9"
+        },
+        "explanation": "The inventory contains two lots of the product 'saumon fum\u00e9 bio 80 gr os\u00e9 bio' from supplier Fictional Atlantic Foods with GTIN 3760099533007. The lot 'SAFE-DEMO-LOT' is verified unaffected by the recall as it is outside the affected lot and date scope (evidence ID e300f9d0-d63e-4e33-9621-6053ad960c6d). The lot '24326020' is affected by the recall based on matching GTIN, lot, and date constraints (evidence ID e706c1d9-0fc8-4ace-a728-1fbce65e5a53). There is no contradictory evidence about these lots. To resolve any remaining uncertainty about the affected lot '24326020', additional supplier evidence or previous decisions could be retrieved referencing evidence IDs 5a18383a-5d42-45c8-a4ba-25041dfdfd6e, 6aee62c1-1d7d-43f4-9962-79e466e27d9d, 222640b8-3058-429d-beed-6166b85143f9, and 5c771d96-77a7-4f0c-82c5-c1213dae16fb."
+      },
+      "tools": [
+        "get_recall",
+        "get_recall_version",
+        "search_inventory_by_gtin",
+        "get_previous_decisions",
+        "get_supplier_evidence",
+        "check_lot_constraints",
+        "check_lot_constraints",
+        "llm_investigation_planner",
+        "get_supplier_evidence",
+        "get_previous_decisions",
+        "check_lot_constraints",
+        "check_lot_constraints",
+        "create_inventory_hold",
+        "prepare_supplier_notification",
+        "append_audit_event"
+      ],
+      "decisions": [
+        {
+          "id": "4c829939-30ad-4152-bdd7-34baceb5ace4",
+          "incident_id": "c2097c50-5cf9-4ff9-b109-502412b59a77",
+          "run_id": "b8757654-d397-4726-976d-853c19d86a5a",
+          "inventory_lot_id": "e300f9d0-d63e-4e33-9621-6053ad960c6d",
+          "recall_version_id": "ec31faef-d52a-4e8b-bc5a-613b4c3125fb",
+          "verdict": "unaffected",
+          "explanation": "GTIN matches, but the known lot/date is outside every parsed affected target.",
+          "action": "no_hold",
+          "quantity": 18,
+          "lot": "SAFE-DEMO-LOT",
+          "previous_verdict": "unaffected",
+          "created_at": "2026-10-22T09:52:25.733535+00:00",
+          "evidence_ids": [
+            "5a18383a-5d42-45c8-a4ba-25041dfdfd6e",
+            "6aee62c1-1d7d-43f4-9962-79e466e27d9d"
+          ]
+        },
+        {
+          "id": "0a550371-56bf-4e1a-a78d-361ca3289cd6",
+          "incident_id": "c2097c50-5cf9-4ff9-b109-502412b59a77",
+          "run_id": "b8757654-d397-4726-976d-853c19d86a5a",
+          "inventory_lot_id": "e706c1d9-0fc8-4ace-a728-1fbce65e5a53",
+          "recall_version_id": "ec31faef-d52a-4e8b-bc5a-613b4c3125fb",
+          "verdict": "affected",
+          "explanation": "GTIN and explicit lot/date constraints match official recall scope.",
+          "action": "create_inventory_hold",
+          "quantity": 24,
+          "lot": "24326020",
+          "previous_verdict": "review",
+          "created_at": "2026-10-22T09:52:25.737071+00:00",
+          "evidence_ids": [
+            "222640b8-3058-429d-beed-6166b85143f9",
+            "5a18383a-5d42-45c8-a4ba-25041dfdfd6e",
+            "5c771d96-77a7-4f0c-82c5-c1213dae16fb"
+          ]
+        }
+      ],
+      "holds": [
+        {
+          "id": "3c50063c-a038-4ddb-ac20-eab5c2e21b9f",
+          "incident_id": "c2097c50-5cf9-4ff9-b109-502412b59a77",
+          "inventory_lot_id": "e706c1d9-0fc8-4ace-a728-1fbce65e5a53",
+          "decision_id": "0a550371-56bf-4e1a-a78d-361ca3289cd6",
+          "quantity": 24,
+          "status": "active",
+          "released_at": null,
+          "released_by": null,
+          "release_reason": null,
+          "created_at": "2026-10-22T09:52:25.740171+00:00"
+        }
+      ],
+      "recall_version_id": "ec31faef-d52a-4e8b-bc5a-613b4c3125fb"
+    },
+    {
+      "stage": "Supplier contradicts warehouse",
+      "incident_id": "c2097c50-5cf9-4ff9-b109-502412b59a77",
+      "run_id": "57225835-a976-490c-a497-8a9165a3282f",
+      "event_id": "db8e5d34-08cc-4a80-b26a-153f97170477",
+      "status": "completed",
+      "llm_mode": "llm_assisted",
+      "latency_ms": 2211.166,
+      "provider": {
+        "model": "gpt-4.1-mini-2025-04-14",
+        "usage": {
+          "total_tokens": 1097,
+          "prompt_tokens": 851,
+          "completion_tokens": 246,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "request_id": "req_64485c4b109b4706b7c452291269b323"
+      },
+      "planner_output": {
+        "draft": "UNVERIFIED MODEL WORDING: The product 'saumon fum\u00e9 bio 80 gr os\u00e9 bio' with GTIN 3760099533007 includes multiple lots in inventory. The lot 'SAFE-DEMO-LOT' is currently considered unaffected by the recall based on available evidence. However, the lot '24326020' presents conflicting information between supplier records and warehouse data, preventing a definitive recall status determination. Further investigation is required to confirm whether this lot is affected. Until clarification, maintain any existing holds on this lot and do not release it for sale.",
+        "tools": [
+          "get_supplier_evidence",
+          "get_previous_decisions"
+        ],
+        "provider": {
+          "model": "gpt-4.1-mini-2025-04-14",
+          "usage": {
+            "total_tokens": 1097,
+            "prompt_tokens": 851,
+            "completion_tokens": 246,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "request_id": "req_64485c4b109b4706b7c452291269b323"
+        },
+        "explanation": "The inventory contains two lots of the same product GTIN 3760099533007. The lot 'SAFE-DEMO-LOT' is verified unaffected by the recall based on matching GTIN and exclusion from affected lots. However, the lot '24326020' has conflicting evidence between supplier data and warehouse records, creating uncertainty about its recall status. To resolve this, additional supplier evidence retrieval and review of previous decisions on lot '24326020' are necessary to clarify its status and guide appropriate inventory actions."
+      },
+      "tools": [
+        "get_recall",
+        "get_recall_version",
+        "search_inventory_by_gtin",
+        "get_inventory_lots",
+        "get_previous_decisions",
+        "get_supplier_evidence",
+        "check_lot_constraints",
+        "check_lot_constraints",
+        "llm_investigation_planner",
+        "get_supplier_evidence",
+        "get_previous_decisions",
+        "check_lot_constraints",
+        "check_lot_constraints",
+        "request_human_review",
+        "prepare_supplier_notification",
+        "append_audit_event"
+      ],
+      "decisions": [
+        {
+          "id": "21248d73-6213-4f7e-8841-a62f5c453933",
+          "incident_id": "c2097c50-5cf9-4ff9-b109-502412b59a77",
+          "run_id": "57225835-a976-490c-a497-8a9165a3282f",
+          "inventory_lot_id": "e300f9d0-d63e-4e33-9621-6053ad960c6d",
+          "recall_version_id": "ec31faef-d52a-4e8b-bc5a-613b4c3125fb",
+          "verdict": "unaffected",
+          "explanation": "GTIN matches, but the known lot/date is outside every parsed affected target.",
+          "action": "no_hold",
+          "quantity": 18,
+          "lot": "SAFE-DEMO-LOT",
+          "previous_verdict": "unaffected",
+          "created_at": "2026-10-22T09:52:27.973283+00:00",
+          "evidence_ids": [
+            "5a18383a-5d42-45c8-a4ba-25041dfdfd6e",
+            "6aee62c1-1d7d-43f4-9962-79e466e27d9d"
+          ]
+        },
+        {
+          "id": "6ba10f5c-493b-4cbc-9343-5fe6e97e7a84",
+          "incident_id": "c2097c50-5cf9-4ff9-b109-502412b59a77",
+          "run_id": "57225835-a976-490c-a497-8a9165a3282f",
+          "inventory_lot_id": "e706c1d9-0fc8-4ace-a728-1fbce65e5a53",
+          "recall_version_id": "ec31faef-d52a-4e8b-bc5a-613b4c3125fb",
+          "verdict": "conflict",
+          "explanation": "Supplier evidence contradicts the warehouse lot. Preserve any existing hold and request human investigation. Existing hold is preserved; only an authorized human can release it.",
+          "action": "preserve_hold_and_review",
+          "quantity": 24,
+          "lot": "24326020",
+          "previous_verdict": "affected",
+          "created_at": "2026-10-22T09:52:27.976434+00:00",
+          "evidence_ids": [
+            "222640b8-3058-429d-beed-6166b85143f9",
+            "57887740-d6d6-42d3-af43-de187c0ff080",
+            "5a18383a-5d42-45c8-a4ba-25041dfdfd6e",
+            "5c771d96-77a7-4f0c-82c5-c1213dae16fb"
+          ]
+        }
+      ],
+      "holds": [
+        {
+          "id": "3c50063c-a038-4ddb-ac20-eab5c2e21b9f",
+          "incident_id": "c2097c50-5cf9-4ff9-b109-502412b59a77",
+          "inventory_lot_id": "e706c1d9-0fc8-4ace-a728-1fbce65e5a53",
+          "decision_id": "0a550371-56bf-4e1a-a78d-361ca3289cd6",
+          "quantity": 24,
+          "status": "active",
+          "released_at": null,
+          "released_by": null,
+          "release_reason": null,
+          "created_at": "2026-10-22T09:52:25.740171+00:00"
+        }
+      ],
+      "recall_version_id": "ec31faef-d52a-4e8b-bc5a-613b4c3125fb"
+    },
+    {
+      "stage": "New live-source record with uploaded synthetic stock",
+      "incident_id": "f77705f1-2c6c-4789-9925-f87011b196b1",
+      "run_id": "f0cba738-d57b-477b-9317-b877e157b071",
+      "event_id": "db5da71e-c06d-4ea7-a265-cf5a543ef9e9",
+      "status": "completed",
+      "llm_mode": "llm_assisted",
+      "latency_ms": 6214.552,
+      "provider": {
+        "model": "gpt-4.1-mini-2025-04-14",
+        "usage": {
+          "total_tokens": 1431,
+          "prompt_tokens": 1093,
+          "completion_tokens": 338,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "request_id": "req_fe379e973ccd4882a09552af01ec523f"
+      },
+      "planner_output": {
+        "draft": "UNVERIFIED MODEL WORDING: The recall affects the product 'onigiri saumon teriyaki 120g' with GTIN 3523680535589, specifically lot '293'. Inventory with this lot is subject to recall and should be held. Inventory with lot 'SYNTHETIC-EXCLUDED-LOT' is outside the recall scope and is unaffected. Inventory items missing lot information cannot be definitively classified at this time and require further human review and supplier confirmation to determine recall status.",
+        "tools": [
+          "get_supplier_evidence",
+          "get_previous_decisions"
+        ],
+        "provider": {
+          "model": "gpt-4.1-mini-2025-04-14",
+          "usage": {
+            "total_tokens": 1431,
+            "prompt_tokens": 1093,
+            "completion_tokens": 338,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "request_id": "req_fe379e973ccd4882a09552af01ec523f"
+        },
+        "explanation": "The inventory includes three lots for the product 'onigiri saumon teriyaki 120g' with GTIN 3523680535589. Lot '293' is confirmed affected by the recall based on matching GTIN, lot, and date constraints (evidence ID 80dd7e75-9dad-479f-96e5-a4869143358e). Lot 'SYNTHETIC-EXCLUDED-LOT' is confirmed unaffected as it falls outside the recall scope (evidence ID 5a21c8b0-09fc-410b-b25e-3a50d2da4a2d). However, the inventory also contains 3 units with missing lot information (ID b211df5c-5198-44cd-bddd-8db12dbff957), which cannot be conclusively classified without lot data. To resolve this uncertainty, additional supplier evidence or previous decisions should be retrieved to clarify the status of inventory with missing lot data."
+      },
+      "tools": [
+        "get_recall",
+        "get_recall_version",
+        "search_inventory_by_gtin",
+        "get_previous_decisions",
+        "get_supplier_evidence",
+        "check_lot_constraints",
+        "check_lot_constraints",
+        "check_lot_constraints",
+        "llm_investigation_planner",
+        "get_supplier_evidence",
+        "get_previous_decisions",
+        "check_lot_constraints",
+        "check_lot_constraints",
+        "check_lot_constraints",
+        "create_inventory_hold",
+        "request_human_review",
+        "prepare_supplier_notification",
+        "append_audit_event"
+      ],
+      "decisions": [
+        {
+          "id": "5e76d0ce-f6bc-4a96-8ff3-acbe0a5988cf",
+          "incident_id": "f77705f1-2c6c-4789-9925-f87011b196b1",
+          "run_id": "f0cba738-d57b-477b-9317-b877e157b071",
+          "inventory_lot_id": "80dd7e75-9dad-4790-b9bc-da939d2feaaf",
+          "recall_version_id": "de10640a-a82e-4185-9b42-93e7325373e0",
+          "verdict": "affected",
+          "explanation": "GTIN and explicit lot/date constraints match official recall scope.",
+          "action": "create_inventory_hold",
+          "quantity": 7,
+          "lot": "293",
+          "previous_verdict": null,
+          "created_at": "2026-10-22T09:52:34.501199+00:00",
+          "evidence_ids": [
+            "abe99783-eb07-4d22-88d9-e7b8b9fde42a",
+            "d2e7f968-d67f-48af-b201-b2b1f80c19e7"
+          ]
+        },
+        {
+          "id": "adbd2d5e-a47a-43d5-9739-9dc6a4ef6644",
+          "incident_id": "f77705f1-2c6c-4789-9925-f87011b196b1",
+          "run_id": "f0cba738-d57b-477b-9317-b877e157b071",
+          "inventory_lot_id": "5a21c8b0-09fc-410b-b25e-3a50d2da4a2d",
+          "recall_version_id": "de10640a-a82e-4185-9b42-93e7325373e0",
+          "verdict": "unaffected",
+          "explanation": "GTIN matches, but the known lot/date is outside every parsed affected target.",
+          "action": "no_hold",
+          "quantity": 9,
+          "lot": "SYNTHETIC-EXCLUDED-LOT",
+          "previous_verdict": null,
+          "created_at": "2026-10-22T09:52:34.506100+00:00",
+          "evidence_ids": [
+            "68bc77f2-6efa-48cf-baec-fa79ef15454c",
+            "abe99783-eb07-4d22-88d9-e7b8b9fde42a"
+          ]
+        },
+        {
+          "id": "bb285f8f-2b65-481c-a24c-259d206ea2e5",
+          "incident_id": "f77705f1-2c6c-4789-9925-f87011b196b1",
+          "run_id": "f0cba738-d57b-477b-9317-b877e157b071",
+          "inventory_lot_id": "b211df5c-5198-44cd-bddd-8db12dbff957",
+          "recall_version_id": "de10640a-a82e-4185-9b42-93e7325373e0",
+          "verdict": "review",
+          "explanation": "Missing lot/date information or unparseable official scope prevents a definitive conclusion. Request human review.",
+          "action": "request_human_review",
+          "quantity": 3,
+          "lot": null,
+          "previous_verdict": null,
+          "created_at": "2026-10-22T09:52:34.508528+00:00",
+          "evidence_ids": [
+            "374e889d-dce3-4622-a3a5-ce8b322733b9",
+            "abe99783-eb07-4d22-88d9-e7b8b9fde42a"
+          ]
+        }
+      ],
+      "holds": [
+        {
+          "id": "a09b0222-7c11-4406-a685-1844a75a64a1",
+          "incident_id": "f77705f1-2c6c-4789-9925-f87011b196b1",
+          "inventory_lot_id": "80dd7e75-9dad-4790-b9bc-da939d2feaaf",
+          "decision_id": "5e76d0ce-f6bc-4a96-8ff3-acbe0a5988cf",
+          "quantity": 7,
+          "status": "active",
+          "released_at": null,
+          "released_by": null,
+          "release_reason": null,
+          "created_at": "2026-10-22T09:52:34.504319+00:00"
+        }
+      ],
+      "recall_version_id": "de10640a-a82e-4185-9b42-93e7325373e0"
+    },
+    {
+      "stage": "API supplier correction handled by background worker",
+      "incident_id": "f77705f1-2c6c-4789-9925-f87011b196b1",
+      "run_id": "ba6cc51b-9fca-4444-a40b-4a9caf92be7b",
+      "event_id": "7a044193-029b-4710-aac5-22dc2e16a0e1",
+      "status": "completed",
+      "llm_mode": "llm_assisted",
+      "latency_ms": 3724.436,
+      "provider": {
+        "model": "gpt-4.1-mini-2025-04-14",
+        "usage": {
+          "total_tokens": 1452,
+          "prompt_tokens": 1125,
+          "completion_tokens": 327,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "request_id": "req_ca5dd472c88e4469953238d245ace9b7"
+      },
+      "planner_output": {
+        "draft": "UNVERIFIED MODEL WORDING: The product 'onigiri saumon teriyaki 120g' with GTIN 3523680535589 is subject to a recall investigation. Inventory includes lot '293', which has conflicting supplier evidence and cannot be cleared without further human investigation. Lot 'SYNTHETIC-EXCLUDED-LOT' is confirmed unaffected by the recall. Inventory items without lot information cannot be conclusively assessed and require human review. Additional supplier evidence and prior recall decisions should be obtained to clarify these discrepancies before any inventory release or communication. All holds on lot '293' remain in place pending further investigation.",
+        "tools": [
+          "get_supplier_evidence",
+          "get_previous_decisions"
+        ],
+        "provider": {
+          "model": "gpt-4.1-mini-2025-04-14",
+          "usage": {
+            "total_tokens": 1452,
+            "prompt_tokens": 1125,
+            "completion_tokens": 327,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "request_id": "req_ca5dd472c88e4469953238d245ace9b7"
+        },
+        "explanation": "The inventory includes three lots of the product 'onigiri saumon teriyaki 120g' with GTIN 3523680535589: lot '293', lot 'SYNTHETIC-EXCLUDED-LOT', and an unknown lot with no lot number. The lot '293' has a conflict verdict due to contradictory supplier evidence, so it requires human investigation and the hold should be preserved. The lot 'SYNTHETIC-EXCLUDED-LOT' is unaffected as it is outside the affected scope. The unknown lot lacks lot information, preventing a definitive conclusion and requiring human review. To resolve these issues, additional supplier evidence and previous decisions should be retrieved to clarify the lot '293' conflict and to identify the unknown lot. This will help determine if any inventory actions can be taken or if holds must remain."
+      },
+      "tools": [
+        "get_recall",
+        "get_recall_version",
+        "search_inventory_by_gtin",
+        "get_inventory_lots",
+        "get_previous_decisions",
+        "get_supplier_evidence",
+        "check_lot_constraints",
+        "check_lot_constraints",
+        "check_lot_constraints",
+        "llm_investigation_planner",
+        "get_supplier_evidence",
+        "get_previous_decisions",
+        "check_lot_constraints",
+        "check_lot_constraints",
+        "check_lot_constraints",
+        "request_human_review",
+        "request_human_review",
+        "prepare_supplier_notification",
+        "append_audit_event"
+      ],
+      "decisions": [
+        {
+          "id": "294ee171-7f72-4ecd-900f-708563aeab43",
+          "incident_id": "f77705f1-2c6c-4789-9925-f87011b196b1",
+          "run_id": "ba6cc51b-9fca-4444-a40b-4a9caf92be7b",
+          "inventory_lot_id": "80dd7e75-9dad-4790-b9bc-da939d2feaaf",
+          "recall_version_id": "de10640a-a82e-4185-9b42-93e7325373e0",
+          "verdict": "conflict",
+          "explanation": "Supplier evidence contradicts the warehouse lot. Preserve any existing hold and request human investigation. Existing hold is preserved; only an authorized human can release it.",
+          "action": "preserve_hold_and_review",
+          "quantity": 7,
+          "lot": "293",
+          "previous_verdict": "affected",
+          "created_at": "2026-10-22T09:52:38.495040+00:00",
+          "evidence_ids": [
+            "9fa1642e-ce69-47a8-a3ee-5c9c8ee7a9c5",
+            "abe99783-eb07-4d22-88d9-e7b8b9fde42a",
+            "d2e7f968-d67f-48af-b201-b2b1f80c19e7"
+          ]
+        },
+        {
+          "id": "e282e299-a087-4a67-a5be-98113202cc00",
+          "incident_id": "f77705f1-2c6c-4789-9925-f87011b196b1",
+          "run_id": "ba6cc51b-9fca-4444-a40b-4a9caf92be7b",
+          "inventory_lot_id": "5a21c8b0-09fc-410b-b25e-3a50d2da4a2d",
+          "recall_version_id": "de10640a-a82e-4185-9b42-93e7325373e0",
+          "verdict": "unaffected",
+          "explanation": "GTIN matches, but the known lot/date is outside every parsed affected target.",
+          "action": "no_hold",
+          "quantity": 9,
+          "lot": "SYNTHETIC-EXCLUDED-LOT",
+          "previous_verdict": "unaffected",
+          "created_at": "2026-10-22T09:52:38.498073+00:00",
+          "evidence_ids": [
+            "68bc77f2-6efa-48cf-baec-fa79ef15454c",
+            "abe99783-eb07-4d22-88d9-e7b8b9fde42a"
+          ]
+        },
+        {
+          "id": "dc955758-8847-4395-9434-521c1ed397e2",
+          "incident_id": "f77705f1-2c6c-4789-9925-f87011b196b1",
+          "run_id": "ba6cc51b-9fca-4444-a40b-4a9caf92be7b",
+          "inventory_lot_id": "b211df5c-5198-44cd-bddd-8db12dbff957",
+          "recall_version_id": "de10640a-a82e-4185-9b42-93e7325373e0",
+          "verdict": "review",
+          "explanation": "Missing lot/date information or unparseable official scope prevents a definitive conclusion. Request human review.",
+          "action": "request_human_review",
+          "quantity": 3,
+          "lot": null,
+          "previous_verdict": "review",
+          "created_at": "2026-10-22T09:52:38.499746+00:00",
+          "evidence_ids": [
+            "374e889d-dce3-4622-a3a5-ce8b322733b9",
+            "abe99783-eb07-4d22-88d9-e7b8b9fde42a"
+          ]
+        }
+      ],
+      "holds": [
+        {
+          "id": "a09b0222-7c11-4406-a685-1844a75a64a1",
+          "incident_id": "f77705f1-2c6c-4789-9925-f87011b196b1",
+          "inventory_lot_id": "80dd7e75-9dad-4790-b9bc-da939d2feaaf",
+          "decision_id": "5e76d0ce-f6bc-4a96-8ff3-acbe0a5988cf",
+          "quantity": 7,
+          "status": "active",
+          "released_at": null,
+          "released_by": null,
+          "release_reason": null,
+          "created_at": "2026-10-22T09:52:34.504319+00:00"
+        }
+      ],
+      "recall_version_id": "de10640a-a82e-4185-9b42-93e7325373e0"
+    }
+  ],
+  "source": {
+    "sync": {
+      "created": 3,
+      "skipped": 997,
+      "errors": [],
+      "origin": "live",
+      "message": "Imported 3 new versions; skipped 997 duplicates. Source: live."
+    },
+    "settings_after_sync": {
+      "llm_enabled": true,
+      "llm_model": "gpt-4.1-mini",
+      "auth_required": false,
+      "demo_enabled": true,
+      "last_successful_sync": "2026-10-22T09:52:19.446811+00:00",
+      "last_sync_error": null,
+      "coverage": "The GTIN-based dataset does not cover all recalls. Refreshes depend on the official publisher; ingestion time is not publication time. Bounded live imports scan the latest records, not the full historical catalog.",
+      "dataset_url": "https://www.data.gouv.fr/datasets/rappelconso-v2-rappels-de-produits",
+      "mode": "development",
+      "source_count": 525,
+      "refresh_interval_seconds": 3600
+    },
+    "historical_recall": {
+      "source_id": "17010",
+      "source_url": "https://rappel.conso.gouv.fr/fiche-rappel/17010/interne",
+      "published_at": "2024-12-27T15:06:58+00:00",
+      "version_id": "ec31faef-d52a-4e8b-bc5a-613b4c3125fb"
+    },
+    "additional_live_recall": {
+      "gtin": 3523680535589,
+      "numero_fiche": "2026-10-0235",
+      "numero_version": 1,
+      "nature_juridique_rappel": "volontaire (sans arr\u00eat\u00e9 pr\u00e9fectoral)",
+      "categorie_produit": "alimentation",
+      "sous_categorie_produit": "plats pr\u00e9par\u00e9s et snacks",
+      "marque_produit": "carrefour le march\u00e9",
+      "modeles_ou_references": "onigiri saumon teriyaki 120g, marque carrefour le march\u00e9",
+      "identification_produits": "3523680535589$293$date limite de consommation$2026-10-26$",
+      "conditionnements": "emballage individuel sous film, 120g",
+      "date_debut_commercialisation": "2026-10-20",
+      "date_date_fin_commercialisation": "2026-10-21",
+      "temperature_conservation": "produit \u00e0 conserver au r\u00e9frig\u00e9rateur",
+      "marque_salubrite": "fr 41 059 003 ue",
+      "informations_complementaires": "nom du fournisseur: foodiz fresh",
+      "zone_geographique_de_vente": "france enti\u00e8re",
+      "distributeurs": "carrefour",
+      "motif_rappel": "erreur d\u2019\u00e9tiquetage entrainant la pr\u00e9sence d\u2019allerg\u00e8nes non d\u00e9clar\u00e9s : \u0153uf et moutarde",
+      "risques_encourus": "substances allergisantes non d\u00e9clar\u00e9es",
+      "preconisations_sanitaires": null,
+      "description_complementaire_risque": "risque pour les personnes allergiques aux \u0153ufs et \u00e0 la moutarde. il est recommand\u00e9 aux personnes allergiques qui d\u00e9tiendraient les produits d\u00e9crits ci-dessus de ne pas les consommer et de les d\u00e9truire, ou de demander le remboursement aupr\u00e8s du point de vente.\u00a4les personnes allergiques qui auraient consomm\u00e9 les produits mentionn\u00e9s ci-dessus et qui pr\u00e9senteraient des sympt\u00f4mes sont invit\u00e9es \u00e0 consulter sans d\u00e9lai leur m\u00e9decin traitant en lui signalant cette consommation ainsi que le lieu d'achat.",
+      "conduites_a_tenir_par_le_consommateur": "ne plus consommer|rapporter le produit au point de vente|contacter le service consommateur|d\u00e9truire le produit",
+      "numero_contact": "0805908070",
+      "modalites_de_compensation": "remboursement",
+      "date_de_fin_de_la_procedure_de_rappel": null,
+      "informations_complementaires_publiques": "appel non surtax\u00e9 du lundi au samedi de 9h \u00e0 19h.",
+      "liens_vers_les_images": "https://rappel.conso.gouv.fr/image/764d2566-590f-4556-9fd8-3a9a9c2eb5bf.jpg",
+      "lien_vers_la_liste_des_produits": null,
+      "lien_vers_la_liste_des_distributeurs": null,
+      "lien_vers_affichette_pdf": "https://rappel.conso.gouv.fr/affichettepdf/23907/interne",
+      "lien_vers_la_fiche_rappel": "https://rappel.conso.gouv.fr/fiche-rappel/23907/interne",
+      "rappel_guid": "279dfa34-d71c-4b04-b8ac-c1f6e4cf9421",
+      "date_publication": "2026-10-22T10:06:12+00:00",
+      "libelle": "onigiri saumon teriyaki 120g",
+      "id": 23907
+    }
+  },
+  "external_notifications_sent": 0,
+  "replay_id": "51975f2b-76e0-4e8a-81da-57bf1e8ff61a",
+  "additional_incident_id": "f77705f1-2c6c-4789-9925-f87011b196b1",
+  "finished_at": "2026-10-22T09:52:38.962762+00:00",
+  "passed": true
+}
