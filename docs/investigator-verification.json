@@ -1,0 +1,57 @@
+{
+  "created_at": "2026-10-22T11:23:41.458612+00:00",
+  "synthetic": true,
+  "incident_id": "71d97fcb-3c3c-4f91-bed8-c0b9587c5380",
+  "run_id": "5837c908-f255-4811-aa26-9eac9f5b45ab",
+  "conflict_run_id": "176da4eb-d86d-4fdf-bf29-d308ffe5fe67",
+  "checks": {
+    "validated_delivery_affected": true,
+    "warehouse_unchanged": true,
+    "frozen_simulation_with_claim_affected": true,
+    "frozen_simulation_without_claim_review": true,
+    "supplier_conflict_preserves_same_hold": true
+  },
+  "model": {
+    "requested": true,
+    "mode": "llm_assisted",
+    "provider_calls": [
+      {
+        "model": "gpt-4.1-mini-2025-04-14",
+        "usage": {
+          "total_tokens": 1015,
+          "prompt_tokens": 968,
+          "completion_tokens": 47,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "request_id": "req_751f37762ef44b96bdfde16193e183ff"
+      }
+    ],
+    "selected_actions": [
+      {
+        "tool": "search_delivery_records",
+        "reason": "Model selected an available read-only evidence source",
+        "status": "completed",
+        "result_count": 1,
+        "inventory_lot_id": "647fa508-c2bd-4fc7-a29e-089218498847",
+        "new_evidence_ids": [
+          "7ec01c96-bf29-4364-bd6f-bebc15b56da4",
+          "40b1a6a0-07b2-4996-b8c3-577d021799df",
+          "aa36e144-5d9a-431a-8588-fa8dbac9658e"
+        ]
+      }
+    ]
+  },
+  "limitations": [
+    "Pre-confirmed associations are synthetic fixture inputs.",
+    "This functional check does not establish general model quality or independent production accuracy."
+  ]
+}

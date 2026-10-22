@@ -1,0 +1,438 @@
+{
+  "created_at": "2026-10-22T11:21:27.615273+00:00",
+  "synthetic": true,
+  "incident_id": "ad8f4dd8-92e0-4fbc-a178-1c959b6878cf",
+  "run_id": "68c13764-2e0d-4210-8b67-d490a822fb02",
+  "conflict_run_id": "6e779877-221d-4c32-b6e5-9caf198a49e8",
+  "checks": {
+    "validated_delivery_affected": true,
+    "warehouse_unchanged": true,
+    "frozen_simulation_with_claim_affected": true,
+    "frozen_simulation_without_claim_review": true,
+    "supplier_conflict_preserves_same_hold": true
+  },
+  "model": {
+    "requested": false,
+    "mode": "deterministic_fallback",
+    "provider_calls": [],
+    "selected_actions": [
+      {
+        "tool": "search_delivery_records",
+        "reason": "Retrieve evidence for unresolved stock",
+        "status": "completed",
+        "result_count": 1,
+        "inventory_lot_id": "8cc6f40e-51b0-4da6-8efc-ae3694440a8c",
+        "new_evidence_ids": [
+          "da69f0b8-391b-4d37-a733-1908d14911cc",
+          "3ec044c4-8e20-4a05-bfd0-00b583a5ca03",
+          "10ecf7bb-e421-4d15-b19a-3586059184a8"
+        ]
+      }
+    ]
+  },
+  "limitations": [
+    "Pre-confirmed associations are synthetic fixture inputs.",
+    "This functional check does not establish general model quality or independent production accuracy."
+  ],
+  "comparison": {
+    "sample_size": 12,
+    "benchmark": "Investigator comparison v1. Development-authored synthetic investigation cases. No independent review or production accuracy claim.",
+    "results": [
+      {
+        "method": "Existing workflow",
+        "strategy": "baseline",
+        "accuracy": 0.5,
+        "resolved_rate": 0.25,
+        "review_request_rate": 0.75,
+        "incorrect_exclusions": 0,
+        "incorrect_holds": 1,
+        "tool_calls": 134,
+        "additional_retrieval_calls": 18,
+        "memory_hints_retrieved": 0,
+        "operator_interventions": 9,
+        "setup_confirmations": 7,
+        "p50_latency_ms": 41.057500000000005,
+        "p95_latency_ms": 94.10575,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "mode": "deterministic",
+        "actual_modes": [
+          "baseline"
+        ],
+        "memory_retrieval_calls": 0
+      },
+      {
+        "method": "Fixed retrieval",
+        "strategy": "fixed",
+        "accuracy": 1.0,
+        "resolved_rate": 0.4166666666666667,
+        "review_request_rate": 0.5833333333333334,
+        "incorrect_exclusions": 0,
+        "incorrect_holds": 0,
+        "tool_calls": 202,
+        "additional_retrieval_calls": 48,
+        "memory_hints_retrieved": 0,
+        "operator_interventions": 7,
+        "setup_confirmations": 7,
+        "p50_latency_ms": 68.8175,
+        "p95_latency_ms": 161.239,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "mode": "deterministic",
+        "actual_modes": [
+          "fixed_retrieval"
+        ],
+        "memory_retrieval_calls": 0
+      },
+      {
+        "method": "Adaptive investigator",
+        "strategy": "adaptive",
+        "accuracy": 1.0,
+        "resolved_rate": 0.4166666666666667,
+        "review_request_rate": 0.5833333333333334,
+        "incorrect_exclusions": 0,
+        "incorrect_holds": 0,
+        "tool_calls": 152,
+        "additional_retrieval_calls": 23,
+        "memory_hints_retrieved": 10,
+        "operator_interventions": 7,
+        "setup_confirmations": 7,
+        "p50_latency_ms": 51.8985,
+        "p95_latency_ms": 91.97035,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "mode": "deterministic",
+        "actual_modes": [
+          "deterministic_fallback"
+        ],
+        "memory_retrieval_calls": 10
+      },
+      {
+        "method": "Adaptive without memory",
+        "strategy": "adaptive",
+        "accuracy": 1.0,
+        "resolved_rate": 0.4166666666666667,
+        "review_request_rate": 0.5833333333333334,
+        "incorrect_exclusions": 0,
+        "incorrect_holds": 0,
+        "tool_calls": 132,
+        "additional_retrieval_calls": 13,
+        "memory_hints_retrieved": 0,
+        "operator_interventions": 7,
+        "setup_confirmations": 7,
+        "p50_latency_ms": 49.948,
+        "p95_latency_ms": 74.30665,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "mode": "deterministic",
+        "actual_modes": [
+          "deterministic_fallback"
+        ],
+        "memory_retrieval_calls": 0
+      }
+    ],
+    "cases": [
+      {
+        "name": "Known affected batch",
+        "expected": "affected",
+        "predictions": {
+          "Existing workflow": "affected",
+          "Fixed retrieval": "affected",
+          "Adaptive investigator": "affected",
+          "Adaptive without memory": "affected"
+        },
+        "run_ids": {
+          "Existing workflow": "1ef3694b-ce55-4c8e-912f-370092c3b1f4",
+          "Fixed retrieval": "5dd1f003-3b4f-40be-b4bd-d2fd843c301a",
+          "Adaptive investigator": "66f0d582-efec-48bd-a1ed-3451d3dfa142",
+          "Adaptive without memory": "e1b11829-94ad-466e-a6a6-cb6dcf6c08b0"
+        },
+        "tool_calls": {
+          "Existing workflow": 9,
+          "Fixed retrieval": 17,
+          "Adaptive investigator": 9,
+          "Adaptive without memory": 9
+        },
+        "split": "development"
+      },
+      {
+        "name": "Known excluded batch",
+        "expected": "unaffected",
+        "predictions": {
+          "Existing workflow": "unaffected",
+          "Fixed retrieval": "unaffected",
+          "Adaptive investigator": "unaffected",
+          "Adaptive without memory": "unaffected"
+        },
+        "run_ids": {
+          "Existing workflow": "3aec6188-9b96-476d-8093-c6214ecdf983",
+          "Fixed retrieval": "e6540590-ad85-4b99-8aa3-e5680c056249",
+          "Adaptive investigator": "de2fc7a9-528a-4239-9bc3-f3d195249744",
+          "Adaptive without memory": "89f309f3-5f73-4251-816c-6a09982b67f7"
+        },
+        "tool_calls": {
+          "Existing workflow": 8,
+          "Fixed retrieval": 16,
+          "Adaptive investigator": 8,
+          "Adaptive without memory": 8
+        },
+        "split": "development"
+      },
+      {
+        "name": "Missing batch with confirmed delivery",
+        "expected": "affected",
+        "predictions": {
+          "Existing workflow": "review",
+          "Fixed retrieval": "affected",
+          "Adaptive investigator": "affected",
+          "Adaptive without memory": "affected"
+        },
+        "run_ids": {
+          "Existing workflow": "3741cb0f-edd4-4a69-bb6d-390cf17fe7ce",
+          "Fixed retrieval": "595e6306-30de-4f89-bc6e-82e1342ba278",
+          "Adaptive investigator": "3ba86589-c41e-462c-9bb5-4a5799187136",
+          "Adaptive without memory": "89c3c5a4-d790-4030-9d7a-9b01e479f893"
+        },
+        "tool_calls": {
+          "Existing workflow": 12,
+          "Fixed retrieval": 17,
+          "Adaptive investigator": 13,
+          "Adaptive without memory": 11
+        },
+        "split": "development"
+      },
+      {
+        "name": "Unconfirmed matching delivery",
+        "expected": "review",
+        "predictions": {
+          "Existing workflow": "review",
+          "Fixed retrieval": "review",
+          "Adaptive investigator": "review",
+          "Adaptive without memory": "review"
+        },
+        "run_ids": {
+          "Existing workflow": "68c73cf4-84e2-4bf9-83a1-062a5a0ad0d2",
+          "Fixed retrieval": "1f92d022-b8cf-4a28-973f-3af15cb4dd93",
+          "Adaptive investigator": "223d41e9-070d-44c7-9296-67079deae31e",
+          "Adaptive without memory": "6ee3d4f1-e8af-418b-85a3-df12f5d91c07"
+        },
+        "tool_calls": {
+          "Existing workflow": 12,
+          "Fixed retrieval": 17,
+          "Adaptive investigator": 13,
+          "Adaptive without memory": 11
+        },
+        "split": "development"
+      },
+      {
+        "name": "Two unconfirmed shipments",
+        "expected": "review",
+        "predictions": {
+          "Existing workflow": "review",
+          "Fixed retrieval": "review",
+          "Adaptive investigator": "review",
+          "Adaptive without memory": "review"
+        },
+        "run_ids": {
+          "Existing workflow": "79321a92-841f-41f8-bf69-43dd54825fed",
+          "Fixed retrieval": "b82ea275-1cf9-4dc2-9033-001403c17ce9",
+          "Adaptive investigator": "6487072a-a897-4f4e-baa7-3e6ff8701605",
+          "Adaptive without memory": "21b7bef8-5878-4f19-9084-4c693774b25a"
+        },
+        "tool_calls": {
+          "Existing workflow": 12,
+          "Fixed retrieval": 17,
+          "Adaptive investigator": 13,
+          "Adaptive without memory": 11
+        },
+        "split": "development"
+      },
+      {
+        "name": "No delivery evidence",
+        "expected": "review",
+        "predictions": {
+          "Existing workflow": "review",
+          "Fixed retrieval": "review",
+          "Adaptive investigator": "review",
+          "Adaptive without memory": "review"
+        },
+        "run_ids": {
+          "Existing workflow": "fce46bd1-b29c-4dfb-9eb5-ea140de27b8e",
+          "Fixed retrieval": "20f8ca60-8ed0-4070-b6e5-7a3ae7ac78c5",
+          "Adaptive investigator": "87428738-ff5c-4e12-acfd-993034794caf",
+          "Adaptive without memory": "305280bc-3c06-4c33-aca1-fa7c90c50888"
+        },
+        "tool_calls": {
+          "Existing workflow": 12,
+          "Fixed retrieval": 17,
+          "Adaptive investigator": 13,
+          "Adaptive without memory": 11
+        },
+        "split": "development"
+      },
+      {
+        "name": "Confirmed delivery outside recall",
+        "expected": "unaffected",
+        "predictions": {
+          "Existing workflow": "review",
+          "Fixed retrieval": "unaffected",
+          "Adaptive investigator": "unaffected",
+          "Adaptive without memory": "unaffected"
+        },
+        "run_ids": {
+          "Existing workflow": "2d7d9368-37eb-4026-92f0-0083c37e0dc8",
+          "Fixed retrieval": "5bf1a646-2a0f-412a-89ce-7726c4fe0b4b",
+          "Adaptive investigator": "f8a3d45c-6e6e-4c4b-8577-d307193ec4a4",
+          "Adaptive without memory": "16fbf953-4b93-49fe-9d10-8d212352794b"
+        },
+        "tool_calls": {
+          "Existing workflow": 12,
+          "Fixed retrieval": 16,
+          "Adaptive investigator": 12,
+          "Adaptive without memory": 10
+        },
+        "split": "development"
+      },
+      {
+        "name": "Confirmed deliveries disagree",
+        "expected": "conflict",
+        "predictions": {
+          "Existing workflow": "review",
+          "Fixed retrieval": "conflict",
+          "Adaptive investigator": "conflict",
+          "Adaptive without memory": "conflict"
+        },
+        "run_ids": {
+          "Existing workflow": "3edecb64-bee5-4676-b0b5-527779bb138a",
+          "Fixed retrieval": "fbe9b957-4ff1-489f-a468-5a2b2b231e73",
+          "Adaptive investigator": "113df9a2-a2a7-4727-91e9-b2035e81037d",
+          "Adaptive without memory": "22f64b49-a3af-4830-9dbf-679609ab19d7"
+        },
+        "tool_calls": {
+          "Existing workflow": 12,
+          "Fixed retrieval": 17,
+          "Adaptive investigator": 15,
+          "Adaptive without memory": 13
+        },
+        "split": "development"
+      },
+      {
+        "name": "Warehouse and confirmed delivery disagree",
+        "expected": "conflict",
+        "predictions": {
+          "Existing workflow": "affected",
+          "Fixed retrieval": "conflict",
+          "Adaptive investigator": "conflict",
+          "Adaptive without memory": "conflict"
+        },
+        "run_ids": {
+          "Existing workflow": "4504bcea-24d3-4fe4-9567-48bdeccd0936",
+          "Fixed retrieval": "3f73d0a3-6270-4601-9711-24946f763c11",
+          "Adaptive investigator": "3e19ef0a-088c-4895-a1ac-fbe5460f088f",
+          "Adaptive without memory": "d512f82e-75fb-4227-beeb-b60a65f3a9e2"
+        },
+        "tool_calls": {
+          "Existing workflow": 9,
+          "Fixed retrieval": 17,
+          "Adaptive investigator": 15,
+          "Adaptive without memory": 13
+        },
+        "split": "development"
+      },
+      {
+        "name": "Missing date with confirmed delivery",
+        "expected": "affected",
+        "predictions": {
+          "Existing workflow": "review",
+          "Fixed retrieval": "affected",
+          "Adaptive investigator": "affected",
+          "Adaptive without memory": "affected"
+        },
+        "run_ids": {
+          "Existing workflow": "bc1b051e-c566-484d-ad23-64dc307c049c",
+          "Fixed retrieval": "8b388fea-90bc-4cb4-8ae2-80ae18a4d64e",
+          "Adaptive investigator": "b5a605d6-100d-452a-be68-a6ba940f4ec6",
+          "Adaptive without memory": "77c00085-e0fe-44f7-9993-de50f625ec66"
+        },
+        "tool_calls": {
+          "Existing workflow": 12,
+          "Fixed retrieval": 17,
+          "Adaptive investigator": 13,
+          "Adaptive without memory": 11
+        },
+        "split": "development"
+      },
+      {
+        "name": "Supplier contradicts confirmed delivery",
+        "expected": "conflict",
+        "predictions": {
+          "Existing workflow": "review",
+          "Fixed retrieval": "conflict",
+          "Adaptive investigator": "conflict",
+          "Adaptive without memory": "conflict"
+        },
+        "run_ids": {
+          "Existing workflow": "f4514467-95bc-4f0a-bac9-ce58f1643bf4",
+          "Fixed retrieval": "eef6e695-d2b2-49bd-aee3-657cb00f4219",
+          "Adaptive investigator": "36a83eea-bb22-4231-a116-13fc9573c555",
+          "Adaptive without memory": "79b479c8-09c6-41db-b5fb-e8c29a24adcf"
+        },
+        "tool_calls": {
+          "Existing workflow": 12,
+          "Fixed retrieval": 17,
+          "Adaptive investigator": 15,
+          "Adaptive without memory": 13
+        },
+        "split": "development"
+      },
+      {
+        "name": "Document instructions do not establish stock",
+        "expected": "review",
+        "predictions": {
+          "Existing workflow": "review",
+          "Fixed retrieval": "review",
+          "Adaptive investigator": "review",
+          "Adaptive without memory": "review"
+        },
+        "run_ids": {
+          "Existing workflow": "3f2159f3-df86-4740-a2a5-3612db072906",
+          "Fixed retrieval": "b73ad17a-1755-49d6-ae83-d06dcc1844b5",
+          "Adaptive investigator": "eda96748-edc4-4bf8-b8ce-17a4319b1c09",
+          "Adaptive without memory": "2959742b-0b0a-494f-9596-f7b25a61fef3"
+        },
+        "tool_calls": {
+          "Existing workflow": 12,
+          "Fixed retrieval": 17,
+          "Adaptive investigator": 13,
+          "Adaptive without memory": 11
+        },
+        "split": "development"
+      },
+      {
+        "name": "Dataset provenance",
+        "sha256": "39399ceea146e4d926c38483f70d7018bd94d51cf9b4f2c61e6d394ebeccdc63",
+        "independent_review_verified": false,
+        "held_out": false,
+        "holdout_status": "development_suite",
+        "independent_review_declared": false,
+        "labeler": "RecallOps development suite",
+        "include_model": false,
+        "setup_confirmations_are_human_work": true,
+        "limitations": [
+          "All strategies receive equivalent synthetic evidence.",
+          "Confirmed shipment associations are supplied fixture inputs, not agent discoveries.",
+          "Review prompts count requested interventions, not measured operator time.",
+          "Memory imports a synthetic prior case with confirmed source association; it is not learned optimization or a trained model.",
+          "Total tool calls include initial loading, deterministic verification, retrieval and internal actions; additional retrieval calls are reported separately.",
+          "No real-store effectiveness, provider cost, or independent accuracy is established."
+        ]
+      }
+    ],
+    "id": "25d229b6-9afc-4942-a073-bc39a36ab121",
+    "created_at": "2026-10-22T11:21:31.872059+00:00"
+  }
+}
