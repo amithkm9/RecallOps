@@ -1,0 +1,9 @@
+[project]
+name = "recallops"
+version = "0.1.0"
+description = "Evidence-grounded product recall investigations"
+requires-python = ">=3.11"
+dependencies = ["pypdf==6.21.1", "fastapi>=0.115,<1", "uvicorn[standard]>=0.34,<1", "pydantic-settings>=2.8,<3", "sqlalchemy>=2.0.40,<3", "alembic>=1.15,<2", "psycopg[binary,pool]>=3.2,<4", "httpx>=0.28,<1", "langgraph>=0.6,<2", "python-multipart>=0.0.20", "pytest>=8.3,<10", "pytest-asyncio>=0.26,<2"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
